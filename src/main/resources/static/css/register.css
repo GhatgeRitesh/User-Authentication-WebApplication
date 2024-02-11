@@ -1,0 +1,93 @@
+body{
+    background-image:url("/images/register_img.jpg");
+    background-repeat: no-repeat;
+    background-size:cover;
+    display:grid;
+}
+.temp{
+    position:relative;
+    top:8vh;
+    margin-left:10vw;
+    width: 30vw;
+    height: 85vh;
+    background-color:transparent;
+    display: grid;
+    gap: 20%;
+    justify-content: center;
+    border: 2px solid rgb(85, 160, 231);
+    box-shadow: 0px 0px 2px 2px rgb(166, 192, 223);
+    border-radius: 5vh;
+}
+.content{
+    position:relative;
+    top:15%;
+    text-align: center;
+    font-size:4.7vh;
+    height: 27%;
+    color: rgb(38, 124, 203);
+}
+/* .content p{
+    margin-top: 25%;
+} */
+.form_details{
+    display: block;
+    justify-content:center;
+    position: relative;
+    top: -15%;
+    color: rgb(239, 14, 14);
+}
+label{
+    font-size:3vh;
+    color: white;
+}
+input{
+    border: none;
+    outline: none;
+    background-color:transparent;
+    color: white;
+    height: 3.4vh;
+    box-shadow: 0px 0px 2px 2px rgb(207, 193, 193);
+    border-radius: 2rem;
+    padding-inline-start: 1vw;
+    width: 90%;
+    margin-bottom:10% ;
+    margin-top: 2%;
+    font-size:2.5vh;
+}
+#check{
+    width: 7%;
+}
+button{
+    width: 70%;
+    position:relative;
+    margin-left: 15%;
+    height: 5vh;
+    border: none;
+    outline: none;
+    border-radius:5rem ;
+    background-image: url("/images/button -register.jpg");
+    font-size:1.2em ;
+}
+button:hover{
+    box-shadow: 0px 0px 2px 2px rgb(204, 217, 230);
+    font-size: 1.3em;
+}
+input:hover{
+    box-shadow: 0px 0px 3px 3px rgb(125, 178, 232);
+
+}
+.links{
+    position: relative;
+    top:5%;
+    margin: auto;
+    text-align: center;
+    font-size:2.8vh ;
+    color: white;
+}
+.links a{
+    text-decoration: none;
+    color: rgb(30, 197, 25);
+}
+.links a:hover{
+    color:rgb(35, 255, 244);
+}
