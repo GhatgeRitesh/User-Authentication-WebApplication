@@ -15,7 +15,7 @@
             <form action="passReset" method="post">
                 <p>*To access the account you have to verify with Eamil Id </p>
                 <label for="Email_Id">Email Id or User Name</label><br>
-                <input type="text" name="Email_Id" onclick="clearInput(this)" required><br>
+                <input type="text" name="Email_Id" onclick="Email_add(this)" required><br>
                 <button>Send</button><br><br>
                 <%
                   String Code= (String)session.getAttribute("name");
@@ -30,12 +30,17 @@
                 <div class="captcha"><br>
                    palcae for the captcha input
                 </div><br>
-                <% }%>
+                <% session.invalidate(); }%>
             </form>
         </div>
         <div class="content" style="color: rgb(237, 237, 237); text-align: left;">
             Go back to <a href="Login"> Login </a> Page
         </div>
     </div>
+    <script>
+    fun Email_add(inputField){
+     inputField.value='Email_ID';
+    }
+    </script>
 </body>
 </html>
