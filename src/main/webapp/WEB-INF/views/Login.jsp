@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/login.css">
 </head>
@@ -28,7 +31,7 @@
                      </div> -->
                <form action="/submit" method="post">
                    <label for="User_Name" >User Name </label><br>
-                   <input type="text" name="User_Name" value=" User Name" onclick="clearInput(this)" required><br>
+                   <input type="text" name="User_Name" value=" User Name" onclick="clearInput(this)" autocomplete="off" required><br>
                       <% String req=(String)session.getAttribute("name");
                       System.out.println("the error is grabed"+req);
                      if(req!=null && req.equals("1")){
@@ -36,7 +39,7 @@
                            <p style="color:red; z-index:2;">!The password length is invalid plz enter 8 digit password</p>
                            <% }%>
                    <label for="password">Password</label><br>
-                   <input type="text" name="password"  value=" Password" onclick="clearInput(this)"  required><br>
+                   <input type="text" name="password"  value=" Password" onclick="clearInput(this)" autocomplete="off" required><br>
                    <button>Login</button>
                </form>
         </div>

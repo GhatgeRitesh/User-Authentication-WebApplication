@@ -11,35 +11,53 @@ import java.util.ArrayList;
 
 @Controller
 public class RegisterController {
-    @GetMapping("register")
+    @GetMapping("/register")
     public String register(){
         return "register";
     }
-    @PostMapping("submit_register")
-    public String register(@RequestParam("Name") String Name,
-                           @RequestParam("Email_Id")String Email_ID,
-                           @RequestParam("password") String password,
+    @PostMapping("/submit_register")
+    public String register(@RequestParam("Name") String name,
+                           @RequestParam("EmailId")String email_ID,
+                           @RequestParam("password") String Password,
                            HttpSession session
     ){
+        //testing the parameters are updated or not
+        System.out.println("Name-> "+name+" email --> "+ email_ID+" password --> "+Password);
+        System.out.println(Password.length() +" password length");
         //----------------------------------------for password verification -------------------------------------------
-        if(password.length()!=7)
+        if(Password.length()!=8)
         {
             String error="1";
-            session.setAttribute("Error",error);
+            session.setAttribute("PassError",error);
             return "redirect:/register";
         }
 
         //---------- ----------------------------for Email Validation ------------------------------------------------
-        char[] chararray =Email_ID.toCharArray();
-        ArrayList<Character> EChar=new ArrayList<>();
-        // using for each loop allocating the string to the list of cahracters of email address
-        for(char a: chararray )
+        char[] chararray =email_ID.toCharArray();
+        char[] mail_syntax={'@','g','m','a','i','l','.','c','o','m'};
+        // working on the  char array provides efficiency in performance regarding space
+        int i=chararray.length-1;
+        int j=9;
+        int count=0;
+        while(count!=10)
         {
-            EChar.add(a);
+            if(chararray[i]==mail_syntax[j])
+            {
+               i--;
+               j--;
+            }
+            else{
+                String error="2";
+                session.setAttribute("EmailError",error);
+                return "redirect:/register";
+            }
+            count++;
         }
+        // end of the while loop means the email address id is valid
+        session.invalidate();
 
 //-------------------------------------------------------------------------------------------------------------------
         //if all constrainst satisfies
-        return "Login";
+        return "/Login";
     }
 }

@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/register.css">
 </head>
@@ -14,20 +17,28 @@
           Register
         </div>
         <div class="form_details">
-             <form action="newreg" method="post">
-               <label for="User_Name">Enter Your Name</label><br>
-               <input type="text" name="User_Name" onclick="clearInput(this)" value="Name" required><br>
+             <form action="submit_register" method="post">
+               <label for="Name">Enter Your Name</label><br>
+               <input type="text" name="Name" onclick="clearInput(this)" value="Name" autocomplete="off" required><br>
+               <%
+                String error=(String)session.getAttribute("EmailError");
+                System.out.println("the error in the email id ");
+                if(error!=null && error.equals("2"))
+                {
+               %>
+               <p>*Only Gmail ID is valid for this project please enter valid email ID</p>
+               <% } %>
                <label for="EmailId">Email Id</label><br>
-               <input type="text" name="EmailId" onclick="clearInput(this)" value="Email Id" required><br>
+               <input type="text" name="EmailId" onclick="clearInput(this)" value="Email Id" autocomplete="off" required><br>
                *set password of length 8 charset <br>
-               <% String req=(String)session.getAttribute("name");
-                                     System.out.println("the error is grabed"+req);
+               <% String req=(String)session.getAttribute("PassError");
+
                                     if(req!=null && req.equals("1")){
                                           %>
                                           <p style="color:red; z-index:2;">!The password length is invalid plz enter 8 digit password</p>
-                                          <% session.invalidate(); }%>
+                                          <% } %>
                <label for="password">Password</label><br>
-               <input type="text" name="password" onclick="clearInput(this)" value="password" required><br>
+               <input type="text" name="password" onclick="clearInput(this)" value="password" autocomplete="off" required><br>
                <input type="checkbox" id="check" required> *Accept all T&C <br><br>
                <button>Submit</button>
              </form>

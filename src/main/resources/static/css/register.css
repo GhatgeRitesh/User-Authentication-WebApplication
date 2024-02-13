@@ -1,3 +1,20 @@
+/* WebKit Scrollbar */
+::-webkit-scrollbar {
+    width: 2px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the thumb on hover */
+}
+
 body{
     background-image:url("/images/register_img.jpg");
     background-repeat: no-repeat;
@@ -6,10 +23,10 @@ body{
 }
 .temp{
     position:relative;
-    top:8vh;
+    top:6vh;
     margin-left:10vw;
     width: 30vw;
-    height: 85vh;
+    height: 95vh;
     background-color:transparent;
     display: grid;
     gap: 20%;
@@ -33,7 +50,7 @@ body{
     display: block;
     justify-content:center;
     position: relative;
-    top: -15%;
+    top: -20%;
     color: rgb(239, 14, 14);
 }
 label{
@@ -51,7 +68,7 @@ input{
     padding-inline-start: 1vw;
     width: 90%;
     margin-bottom:10% ;
-    margin-top: 2%;
+    margin-top: 1%;
     font-size:2.5vh;
 }
 #check{
