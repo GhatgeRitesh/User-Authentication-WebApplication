@@ -1,16 +1,35 @@
 package com.ritesh.UserAuth.Controllers;
 
+import com.ritesh.UserAuth.DBUtils.JDBC;
+import com.ritesh.UserAuth.Model.User;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
+
 
 @Controller
-public class RegisterController {
+@Component
+@Log
+public class RegisterController implements CommandLineRunner {
+    @Autowired
+    private JDBC b;
+   private final User user;
+
+    public RegisterController(User user) {
+        this.user = user;
+    }
+
+    private Boolean flag=false;
+
+
+
     @GetMapping("/register")
     public String register(){
         return "register";
@@ -56,8 +75,24 @@ public class RegisterController {
         // end of the while loop means the email address id is valid
         session.invalidate();
 
+        // using getter and setters to integrate the data into user class
+        System.out.println("setting the name");
+        user.setName(name);
+        user.setEmail_Id(email_ID);
+        user.setPassword(Password);
+
+//        b.save(user);
+          b.connection();
 //-------------------------------------------------------------------------------------------------------------------
-        //if all constrainst satisfies
-        return "/Login";
+        //if all constrainst satisfied
+        return "/Login1";
+
+    }
+
+
+    @Override
+    public void run(final String... abc){
+        if(flag){
+        log.info("Successful userRegistration process complete");}
     }
 }
