@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
+                       <!--              JavaScript methods             -->
+                         <script>
+                          // JavaScript function to clear input field value on click
+                             function clearInput(inputField) {
+                              inputField.value = '';
+                             }
+                         </script>
 
   <!--  <div class="image">
         <img src="/images/login.png" alt="user logo security pic">
@@ -28,31 +35,40 @@
                   </div>
                    <div class="input_logo2">
                         <img src="/images/password_logo.jpg">
-                     </div> -->
+                   </div> -->
+<!-- ----------------------------------------------  Form Code  ------------------------------------------------------->
                <form action="/submit" method="post">
-                   <label for="User_Name" >User Name </label><br>
-                   <input type="text" name="User_Name" value=" User Name" onclick="clearInput(this)" autocomplete="off" required><br>
-                      <% String req=(String)session.getAttribute("name");
-                      System.out.println("the error is grabed"+req);
-                     if(req!=null && req.equals("1")){
+                   <label for="Email_Id" >User Email </label><br>
+                   <input type="text" name="Email_id" value=" User Email" onclick="clearInput(this)" autocomplete="off" required><br>
+             <!--                    java Session for valid password                              -->
+
+                      <% String req=(String)session.getAttribute("Passerror");
+                      if(req!=null && req.equals("1")){
                            %>
                            <p style="color:red; z-index:2;">!The password length is invalid plz enter 8 digit password</p>
                            <% }%>
+
+                      <%
+                        String error=(String)session.getAttribute("email_invalid");
+                        if(error!=null)
+                        {
+                          %>
+                          <p style="color:red; z-index:2;">invalid email_id or password</p>
+                        <%}%>
+                      %>
+              <!--                             java session end                                  -->
                    <label for="password">Password</label><br>
                    <input type="text" name="password"  value=" Password" onclick="clearInput(this)" autocomplete="off" required><br>
                    <button>Login</button>
                </form>
         </div>
+
+ <!--*********************************************Bottom Links*******************************************************-->
         <div class="otherLinks">
             <a href="forgotpassword">Forgot Password !</a><br>
             <a href="register">New Register</a>
         </div>
     </div>
-    <script>
-            // JavaScript function to clear input field value on click
-            function clearInput(inputField) {
-                inputField.value = '';
-            }
-        </script>
+
 </body>
 </html>

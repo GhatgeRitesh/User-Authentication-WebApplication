@@ -1,15 +1,29 @@
 package com.ritesh.UserAuth.Controllers;
 
+import com.ritesh.UserAuth.DBUtils.JDBC;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
+import com.ritesh.UserAuth.Model.User;
 @Controller
+@Service
+@Log
 public class LoginController {
+    @Autowired
+    private JDBC b;
+    private final User user;
+
+    public LoginController(User user) {
+        this.user = user;
+    }
+
     // if forgot password is clicked by the user
     @GetMapping("forgotpassword")
     public ModelAndView forgot(ModelAndView m){
@@ -23,18 +37,30 @@ public class LoginController {
     public String login() {
         return "Login";
     }
-    @PostMapping("submit_Login")
-    public String login_Check(@RequestParam("User_Name")String user_name,
-                              @RequestParam("password")String password,
+    @PostMapping("submit")
+    public String login_Check(@RequestParam("Email_id")String email_ID,
+                              @RequestParam("password")String Password,
                               HttpSession session
                               ){
- // ------------------------------function for the password check ----------------------------------------------------
 
  //-------------------------------function for the valid password length ---------------------------------------------
+   if(Password.length()!=8){
+       log.info("Password length invalid");
+       String error="1";
+       session.setAttribute("PassError",error);
+       return "redirect:/Login";
+   }
+// ------------------------------function for the password check ----------------------------------------------------
+        user.setEmail_Id(email_ID);
+        user.setPassword(Password);
+        Boolean flag=b.verify();
+        if(!flag){
+            log.info("error verification");
+            String error="2";
+            session.setAttribute("email_invalid",error);
+            return "redirect:/Login";
+        }
 
- //-------------------------------function for password DB authentication --------------------------------------------
-
-//-------------------------------------------if all goes good --------------------------------------------------------
-        return "Application";
+        return "index";
     }
 }

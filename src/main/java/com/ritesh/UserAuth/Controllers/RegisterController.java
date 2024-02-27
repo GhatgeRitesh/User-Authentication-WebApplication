@@ -82,13 +82,12 @@ public class RegisterController implements CommandLineRunner {
         user.setPassword(Password);
 
        b.save();
+       flag=true;
 
 //-------------------------------------------------------------------------------------------------------------------
         //if all constrainst satisfied
-        return "/Login1";
-
+        return "/Login";
     }
-
 
     @Override
     public void run(final String... abc){
