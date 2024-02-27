@@ -81,8 +81,8 @@ public class RegisterController implements CommandLineRunner {
         user.setEmail_Id(email_ID);
         user.setPassword(Password);
 
-//        b.save(user);
-          b.connection();
+       b.save();
+
 //-------------------------------------------------------------------------------------------------------------------
         //if all constrainst satisfied
         return "/Login1";
