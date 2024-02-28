@@ -41,8 +41,7 @@ public class RegisterController implements CommandLineRunner {
                            HttpSession session
     ){
         //testing the parameters are updated or not
-        System.out.println("Name-> "+name+" email --> "+ email_ID+" password --> "+Password);
-        System.out.println(Password.length() +" password length");
+        log.info("Name-> "+name+" email --> "+ email_ID+" password --> "+Password);
         //----------------------------------------for password verification -------------------------------------------
         if(Password.length()!=8)
         {
@@ -81,8 +80,10 @@ public class RegisterController implements CommandLineRunner {
         user.setEmail_Id(email_ID);
         user.setPassword(Password);
 
-       b.save();
-       flag=true;
+       flag=b.save();
+      if(!flag){
+          return "redirect:/register";
+      }
 
 //-------------------------------------------------------------------------------------------------------------------
         //if all constrainst satisfied

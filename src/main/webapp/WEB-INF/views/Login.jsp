@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-                       <!--              JavaScript methods             -->
+                       <!--               JavaScript methods             -->
                          <script>
                           // JavaScript function to clear input field value on click
                              function clearInput(inputField) {

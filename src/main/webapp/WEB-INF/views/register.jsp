@@ -22,7 +22,6 @@
                <input type="text" name="Name" onclick="clearInput(this)" value="Name" autocomplete="off" required><br>
                <%
                 String error=(String)session.getAttribute("EmailError");
-                System.out.println("the error in the email id ");
                 if(error!=null && error.equals("2"))
                 {
                %>
