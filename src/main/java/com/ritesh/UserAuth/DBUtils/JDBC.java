@@ -40,10 +40,11 @@ public class JDBC {
             queryParameters.add(user.getName());
             try {
                 result = template.queryForList(query, queryParameters.toArray(), String.class);
+
             }catch (Exception e){
                 System.out.println(e +"exception while validation in JDBC" );
             }
-            if(result!=null)
+            if(!(result.size() ==0))
             {
                 return false;
             }
@@ -78,7 +79,7 @@ public class JDBC {
         else{
             System.out.println("user has the null input");
         }
-        return false;
+        return true;
     }
 //----------------------------------method to verify the input from the login page--------------------------------------
     public Boolean verify() {
