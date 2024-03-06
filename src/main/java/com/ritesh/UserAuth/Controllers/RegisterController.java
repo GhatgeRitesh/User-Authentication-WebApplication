@@ -1,6 +1,7 @@
 package com.ritesh.UserAuth.Controllers;
 
 import com.ritesh.UserAuth.DBUtils.JDBC;
+import com.ritesh.UserAuth.Hashing.GetHash_ID;
 import com.ritesh.UserAuth.Model.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
@@ -21,9 +22,11 @@ public class RegisterController implements CommandLineRunner {
     @Autowired
     private JDBC b;
    private final User user;
-
-    public RegisterController(User user) {
+   @Autowired
+   private final GetHash_ID hash;
+    public RegisterController(User user, GetHash_ID hash) {
         this.user = user;
+        this.hash = hash;
     }
 
     private Boolean flag=false;
@@ -42,6 +45,8 @@ public class RegisterController implements CommandLineRunner {
     ){
         //testing the parameters are updated or not
         log.info("Name-> "+name+" email --> "+ email_ID+" password --> "+Password);
+
+
         //----------------------------------------for password verification -------------------------------------------
         if(Password.length()!=8)
         {
@@ -49,7 +54,8 @@ public class RegisterController implements CommandLineRunner {
             session.setAttribute("PassError",error);
             return "redirect:/register";
         }
-
+        //------------------------------------For the Hash Id ------------------------------------------------------------------
+        Password= hash.Hash_Id(Password);
         //---------- ----------------------------for Email Validation ------------------------------------------------
         char[] chararray =email_ID.toCharArray();
         char[] mail_syntax={'@','g','m','a','i','l','.','c','o','m'};

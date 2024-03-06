@@ -10,6 +10,8 @@ public class User {
         System.out.println("Into the user class");
     }
     private String name;
+
+
     public String getName() {
         return name;
     }
@@ -38,4 +40,33 @@ public class User {
       this.Password=Password;
     }
 
-}//
+
+
+    //------------------------------------------getter and setters for the gmail api --------------------------------------
+    private String to;
+    public String getTo() {
+        return to;
+    }
+
+    public void setTo(String to) {
+        this.to = to;
+    }
+
+    private String subject;
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+    private String text;
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+}

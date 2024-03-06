@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Repository
 @Service
@@ -51,7 +53,26 @@ public class JDBC {
         }
         return true;
     }
+//---------------------------------------validitating  the user is present or not in the db-----------------------------
 
+    public Boolean validateEmail(String Email){
+        log.info("validating the email form validateEmail");
+        boolean flag=false;
+        JdbcTemplate temp=new JdbcTemplate();
+        String query="Select Name from userlist where email=?";
+        List<String> result1=new ArrayList<>();
+        try {
+            result1 = temp.queryForList(query, new Object[]{Email}, String.class);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        if((result1.size())==0)
+        {
+            flag=true;
+        }
+        System.out.println("Email In Use");
+        return flag;
+    }
 //----------------------------------------------------------------------------------------------------------------------
      //code to insert the User Data
     public Boolean save() {
@@ -104,7 +125,8 @@ public class JDBC {
                 log.info("Password not found");
                 return false;
             }
-                if (userPassword != user.getPassword()) {
+            System.out.println(user.getPassword());
+                if (!Objects.equals(userPassword, user.getPassword())) {
                     log.info("Incorrect Password");
                     return false;
                 } else
