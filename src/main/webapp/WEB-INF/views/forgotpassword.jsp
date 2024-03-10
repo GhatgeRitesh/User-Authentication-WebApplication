@@ -15,7 +15,7 @@
     <div class="temp">
         <b>Re-Verification</b>
         <div class="form_details">
-            <form action="passReset" method="post">
+            <form action="Passreset" method="post">
                 <p>*To access the account you have to verify with Eamil Id </p>
                 <label for="Email_Id">Email Id or User Name</label><br>
                 <input type="text" name="Email_Id" onclick="Email_add(this)" required><br>

@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Document</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
@@ -55,7 +55,7 @@
                           %>
                           <p style="color:red; z-index:2;">invalid email_id or password</p>
                         <%}%>
-                      %>
+                     
               <!--                             java session end                                  -->
                    <label for="password">Password</label><br>
                    <input type="text" name="password"  value=" Password" onclick="clearInput(this)" autocomplete="off" required><br>

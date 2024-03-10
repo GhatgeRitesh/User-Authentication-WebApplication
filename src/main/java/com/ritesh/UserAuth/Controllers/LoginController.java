@@ -1,6 +1,8 @@
 package com.ritesh.UserAuth.Controllers;
 
 import com.ritesh.UserAuth.DBUtils.JDBC;
+import com.ritesh.UserAuth.GMailAPI.GMailSender;
+import com.ritesh.UserAuth.Hashing.GetHash_ID;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +21,12 @@ public class LoginController {
     @Autowired
     private JDBC b;
     private final User user;
+    @Autowired
+    private final GetHash_ID hash;
 
-    public LoginController(User user) {
+    public LoginController(User user, GetHash_ID hash) {
         this.user = user;
-    }
-
-    // if forgot password is clicked by the user
-    @GetMapping("forgotpassword")
-    public ModelAndView forgot(ModelAndView m){
-        m.setViewName("forgotpassword");
-
-        return m;
+        this.hash = hash;
     }
 
     // this is the Login Page Controller used to handel the Login transactions
@@ -51,6 +48,7 @@ public class LoginController {
        return "redirect:/Login";
    }
 // ------------------------------function for the password check ----------------------------------------------------
+       Password=hash.Hash_Id(Password);
         user.setEmail_Id(email_ID);
         user.setPassword(Password);
         Boolean flag=b.verify();
@@ -61,6 +59,7 @@ public class LoginController {
             return "redirect:/Login";
         }
 
+//----------------------------------------------------------------------------------------------------------------------
         return "index";
     }
 }
