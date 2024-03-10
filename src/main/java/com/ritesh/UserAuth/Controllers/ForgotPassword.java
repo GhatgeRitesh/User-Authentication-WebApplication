@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,7 +34,7 @@ public class ForgotPassword {
         this.temp = temp;
     }
 
-    @GetMapping("/forgotpassword")
+    @RequestMapping("/forgotpassword")
     public ModelAndView forgot(ModelAndView m){
         log.info("into the forgot controller");
         m.setViewName("/forgotpassword");
@@ -61,9 +62,11 @@ public class ForgotPassword {
 
         // Generate a random 6-digit number
         for (int i = 0; i < 6; i++) {
-            sb.append(random.nextInt(6)); // Generate a digit between 0 and 9
+            int digit = random.nextInt(10); // Generate a digit between 0 and 9
+            sb.append(digit);
         }
-        long hashcode=sb.toString().hashCode();
+
+        long hashcode = Long.parseLong(sb.toString());
         user.setHashcode(hashcode);
 
 
@@ -83,20 +86,20 @@ public class ForgotPassword {
                 System.out.println("Mail sent Successfully");
                 session.setAttribute("Email_Id",user.getEmail_Id());
                 session.setAttribute("name",hashcode);
-                return "redirect:/forgotpassword";            }
+                }
             else{
                 System.out.println("The Error occured while sending the email");
             }
 
         }
 
-        return "redirect:/forgotPassword";
+        return "/Code Verification";
     }
-    @GetMapping("/varify")
-    public String verifycode(@RequestParam String code){
-        if(code.equals(String.valueOf(user.getHashcode()))){
-            return "index";
-        }
-        return "Login";
-  }
+//    @GetMapping("/varify")
+//    public String verifycode(@RequestParam String code,HttpSession session){
+//        if(code.equals(String.valueOf(user.getHashcode()))){
+//            return "index";
+//        }
+//        return "Login";
+//  }
 }
