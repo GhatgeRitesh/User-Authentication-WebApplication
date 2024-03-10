@@ -69,4 +69,13 @@ public class User {
         this.text = text;
     }
 
+    //--------------------------- to have access to the gmail hash id-------------------------------------------------------
+    private long Hashcode;
+    public long getHashcode() {
+        return Hashcode;
+    }
+
+    public void setHashcode(long hashcode) {
+        Hashcode = hashcode;
+    }
 }

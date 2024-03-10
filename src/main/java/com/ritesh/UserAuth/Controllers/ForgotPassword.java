@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.print.attribute.standard.PresentationDirection;
 import java.util.Random;
 
 @Component
@@ -60,10 +61,10 @@ public class ForgotPassword {
 
         // Generate a random 6-digit number
         for (int i = 0; i < 6; i++) {
-            sb.append(random.nextInt(10)); // Generate a digit between 0 and 9
+            sb.append(random.nextInt(6)); // Generate a digit between 0 and 9
         }
-        int hashcode=sb.toString().hashCode();
-
+        long hashcode=sb.toString().hashCode();
+        user.setHashcode(hashcode);
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -80,15 +81,22 @@ public class ForgotPassword {
             boolean b=sender.SendEmail();
             if(b){
                 System.out.println("Mail sent Successfully");
-            }
+                session.setAttribute("Email_Id",user.getEmail_Id());
+                session.setAttribute("name",hashcode);
+                return "redirect:/forgotpassword";            }
             else{
                 System.out.println("The Error occured while sending the email");
             }
 
         }
 
-
-        return "Login";
+        return "redirect:/forgotPassword";
     }
-
+    @GetMapping("/varify")
+    public String verifycode(@RequestParam String code){
+        if(code.equals(String.valueOf(user.getHashcode()))){
+            return "index";
+        }
+        return "Login";
+  }
 }
