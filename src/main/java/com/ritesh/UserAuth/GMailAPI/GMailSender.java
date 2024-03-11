@@ -30,7 +30,7 @@ public class GMailSender {
         prop.put("mail.smtp.host","smtp.gmail.com");
 
         String username="riteshghatge5555";
-        String password="jajk kkow cucf vadk";
+        String password="you will find this on google account app permissions";
 
         String from="riteshghatge5555@gmail.com";
 
