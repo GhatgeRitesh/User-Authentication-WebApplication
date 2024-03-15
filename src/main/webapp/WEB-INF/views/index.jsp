@@ -12,23 +12,26 @@
         <title>Document</title>
     </head>
     <body>
-        <div class="image">
-            <img src="/images/index.png" alt="security logo">
-        </div>
         <div class="template">
-            <div class="head">
-               Welcome to UserAuth Web Application Project
-            </div>
-            <div class="context">
-                Here are the features of Project <br> <br>
-                <li>Implement a secure authentication system for a web application using Spring Boot, JSP, CSS, and MySQL. </li><br>
-                <li>The system will include features like user registration, login, forgot password functionality with email verification, and hash ID creation using SHA-256.</li> <br>
-
-            </div>
-            <div class="links">
-                Please press the continue button for further exploration. <br>
-                <a href="register"><button>Continue</button></a>
-            </div>
-        </div>
+               <div class="head">
+                 Welcome To UserAuth
+               </div>
+               <div class="context">
+                   This mini project implements secure user authentication using a variety of technologies. <br><br>
+                   It utilizes HTML, CSS, JSP, Java, Spring Boot, and MySQL for development. <br><br>
+                   Key features include the integration of the Secure Hash Algorithm -256 for password encryption, Gmail API integration for secure login and account recovery, and a multi-module Maven architecture for efficient project management. <br><br>
+                   The system ensures safe password storage and facilitates seamless integration into any Maven architecture project. <br><br>
+                   This project lays the groundwork for future microservice integration, making it a valuable addition to any software ecosystem. <br>
+               </div>
+               <div class="links">
+                   <a href="Login">Login</a> <a href="register">New Register</a>
+                 </div>
+               <div class="author">
+                   Developed By <br>
+                  <span> Ritesh Balaji Ghatge </span><br>
+                   Class:- T.Y. [Information Technology] <br>
+                   Roll no:-44 PRN:-2121291246052 <br>
+               </div>
+           </div>
     </body>
     </html>
