@@ -34,7 +34,7 @@ public class CodeVerifyController {
 
         if(code.equals(String.valueOf(user.getHashcode()))){
             log.info("verified Code");
-            return "index";
+            return "Welcome";
         }
         log.warning("Incorrect Code!");
         return "redirect:/forgotpassword";

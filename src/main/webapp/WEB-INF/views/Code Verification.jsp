@@ -8,20 +8,27 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="./css/codeverify.css">
     <title>verify code</title>
-    <link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
- <div class="temp">
-     <div class="form">
-        <form action="/verify" method="post">
-        <label for="email">Email Id
-        <input type="text" name="email" value=${Email_Id}   disabled>
-        <lable for="code">
-        <input type="text" name="code"  autocomplete="off" required>
-        <button>Submit</button>
-        </form>
-     <div>
- </div>
+ <div class="template">
+         <div class="head">
+          Verify Code
+         </div>
+         <div class="form">
+           <form action="verify" method="post">
+             <label for="Email">Email</label> <br>
+             <input type="text" name="Email" value="${Email_Id}" autocomplete="off" required disabled><br>
+             <label for="code">Code</label><br>
+             <input type="text" name="code" autocomplete="off" required><br>
+             <button>Submit</button>
+           </form>
+         </div>
+         <div class="links">
+            <a href="forgotpassword">Back</a>
+            <a href="register">New Register</a>
+         </div>
+     </div>
 </body>
 </html>
