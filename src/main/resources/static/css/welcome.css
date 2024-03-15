@@ -1,0 +1,90 @@
+body{
+    background-color:none;
+    background-image: url("/images/3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.head{
+    background-color: transparent;
+    display: block;
+    justify-content: center;
+    object-fit: scale-down;
+    /* border: 2px solid red; */
+    height: 15vh;
+}
+.head img{
+    background-color: transparent;
+    background: none;
+    height: 15vh;
+}
+.menu{
+    /* border: 1px solid blue; */
+    z-index: 2;
+    display: inline-flex;
+    justify-content: center;
+    position: relative;
+    top:-40%;
+    left: 65vw;
+    gap: 2rem;
+}
+#menuFont{
+    font-size: 1.7rem;
+}
+#menuFont a{
+    text-decoration: none;
+    color: black;
+}
+#p{
+    text-align: center;
+}
+#c{
+    background-color:rgba(10, 55, 74, 0.9) ;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:rgb(255, 255, 255);
+    font-weight: 300;
+    height: auto;
+    border-radius: 5vh;
+}
+.cards{
+    text-align: left ;
+    position: relative;
+    top:10vh;
+    margin-top:3vh ;
+    display:flex;
+    justify-content:space-evenly;
+    /* border: 2px solid blue; */
+}
+.content1{
+    width: 25vw;
+    border: 2px solid rgb(236, 157, 30);
+    display: inline-flexbox;
+    list-style:georgian;
+    box-shadow: 0px 2px 2px 2px rgb(23,23,23,0.34);
+}
+.content2{
+    width: 25vw;
+    border: 2px solid rgb(68, 20, 211);
+    box-shadow: 0px 2px 2px 2px rgb(23,23,23,0.34);
+}
+.content3{
+    width: 30vw;
+    border: 2px solid rgb(34, 164, 60);
+    box-shadow: 0px 2px 2px 2px rgb(23,23,23,0.34);
+}
+.content4{
+    width: 30vw;
+    border: 2px solid rgb(255, 8, 230);
+    box-shadow: 0px 2px 2px 2px rgb(23,23,23,0.34);
+    padding: 5%;
+}
+.main{
+    /* border: 2px solid red; */
+    position: relative;
+    top: 20vh;
+    text-align: center;
+    font: bold;
+    font-size: 16px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    background-color:rgba(205, 204, 190, 0.89) ;
+}
