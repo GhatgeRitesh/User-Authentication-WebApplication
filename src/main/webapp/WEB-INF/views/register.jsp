@@ -28,7 +28,7 @@
                <p>*Only Gmail ID is valid for this project please enter valid email ID</p>
                <% } %>
                <label for="EmailId">Email Id</label><br>
-               <input type="text" name="EmailId" onclick="clearInput(this)" value="${error.Email_Id}" autocomplete="off" required><br>
+               <input type="text" name="EmailId" onclick="clearInput(this)" autocomplete="off" required><br>
                *set password of length 8 charset <br>
                <% String req=(String)session.getAttribute("PassError");
 

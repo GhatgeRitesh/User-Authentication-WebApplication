@@ -57,20 +57,23 @@ public class JDBC {
 
     public Boolean validateEmail(String Email){
         log.info("validating the email form validateEmail");
-        boolean flag=false;
-        JdbcTemplate temp=new JdbcTemplate();
+        boolean flag=true;
+        JdbcTemplate temp=new JdbcTemplate(dataSource);
         String query="Select Name from userlist where email=?";
         List<String> result1=new ArrayList<>();
         try {
             result1 = temp.queryForList(query, new Object[]{Email}, String.class);
+            System.out.println(result1.toString());
         }catch(Exception e){
             System.out.println(e);
         }
-        if((result1.size())==0)
+        if(result1.isEmpty())
         {
-            flag=true;
+            flag=false;
+            System.out.println("Invalid Email Id");
+            return flag;
         }
-        System.out.println("Email In Use");
+        System.out.println("email true");
         return flag;
     }
 //----------------------------------------------------------------------------------------------------------------------

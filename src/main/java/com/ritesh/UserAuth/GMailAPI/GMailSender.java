@@ -53,7 +53,7 @@ public class GMailSender {
             flag=true;
         }
         catch(Exception e){
-            e.printStackTrace();
+            System.out.println(e);;
         }
 
 

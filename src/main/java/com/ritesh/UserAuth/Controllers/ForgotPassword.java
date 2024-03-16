@@ -34,12 +34,10 @@ public class ForgotPassword {
         this.temp = temp;
     }
 
-    @RequestMapping("/forgotpassword")
-    public ModelAndView forgot(ModelAndView m){
+    @GetMapping("/forgotpassword")
+    public String forgot(){
         log.info("into the forgot controller");
-        m.setViewName("/forgotpassword");
-
-        return m;
+        return  "forgotpassword";
     }
     @PostMapping("/Passreset")
     public String Reset(@RequestParam String Email_Id, HttpSession session){
@@ -51,8 +49,9 @@ public class ForgotPassword {
             user.setTo(Email_Id);
         }
         else{
-            String Email_used="Email_In_Use";
-            session.setAttribute("Email_Invalid",Email_used);
+            System.out.println("invalid Email");
+            String error="1";
+            session.setAttribute("error",error);
             return "redirect:/forgotpassword";
         }
 
@@ -89,6 +88,9 @@ public class ForgotPassword {
                 }
             else{
                 System.out.println("The Error occured while sending the email");
+                String error3="3";
+                session.setAttribute("error2",error3);
+                return "redirect:/forgotpassword";
             }
 
         }
@@ -96,11 +98,4 @@ public class ForgotPassword {
 
         return "/Code Verification";
     }
-//    @GetMapping("/varify")
-//    public String verifycode(@RequestParam String code,HttpSession session){
-//        if(code.equals(String.valueOf(user.getHashcode()))){
-//            return "index";
-//        }
-//        return "Login";
-//  }
 }
