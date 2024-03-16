@@ -1,6 +1,6 @@
 body{
     background-color: white;
-    background-image:url("./images/7.jpg") ;
+    background-image:url("/images/7.jpg") ;
     background-repeat: no-repeat;
     background-size:1550px 1200px;
 }
@@ -19,7 +19,6 @@ body{
   justify-content: center;
   align-items: center;
   border-radius: 0.9vh;
-  overflow: hidden;
 }
 .head{
     position: relative;
@@ -38,6 +37,30 @@ body{
     font-size: 1.4em;
     border-radius: 2vh;
     color: rgb(254, 254, 254);
+}
+.links{
+  display:flex;
+  justify-content:center;
+  align-content:space-between;
+  margin:auto;
+  padding:5%;
+  width:50%;
+}
+.links a{
+ margin:auto;
+ padding:5%;
+ font-size:2em;
+ background-color:green;
+ text-decoration:none;
+ color:white;
+}
+.links a:hover{
+margin:auto;
+ padding:5%;
+ font-size:2.2em;
+ background-color:green;
+ text-decoration:none;
+ color:white;
 }
 .author{
     width: 100%;
