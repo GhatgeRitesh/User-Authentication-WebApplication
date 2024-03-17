@@ -1,13 +1,6 @@
 <H1>UserAuth : WEB_Application</h1>
 <h2>Introduction</h2>
-Privacy is integral part of Human being . It influences human behaviour 
-The Part of Privacy is crucial in Internet as well, to get rid of Unautherised access<br> 
-is major aim of the Web Security , Understanding needs of this scenario. We have Devloped 
-UserAuth , A partial Web Application which can submerge <br> with all other WebApplication those use
-user Personal Profile for ease of Access. UserAuth helps with the secure Authentication features .
-UserAuth Provides Robust privacy. this application helps priacy with the implementation of the Hashing alorithms 
-those cannot be decrypted , which means even the developers of WebApplication will not have the exact information 
-about the profile .<br>
+Privacy is fundamental to human nature, shaping our actions and interactions. It's equally crucial in the digital sphere, especially on the web, where preventing unauthorized access is paramount. To address this, we've developed UserAuth, a web application that seamlessly integrates with other platforms relying on user profiles. UserAuth prioritizes security by implementing robust authentication features, ensuring user privacy with unbreakable hashing algorithms. This means even web developers can't access specific user information, reinforcing the confidentiality of personal data. With UserAuth, privacy isn't just a feature – it's a guarantee, protecting digital identities with cutting-edge technology. .<br>
 <h3>Key Features</h3>
 <ul>
 <li> Real time Authentication</li>
