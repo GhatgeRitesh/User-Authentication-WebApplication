@@ -48,12 +48,12 @@ public class GMailSender {
             msg.setRecipient(Message.RecipientType.TO,new InternetAddress(user.getTo()));
             msg.setFrom(new InternetAddress(from));
             msg.setSubject(user.getSubject());
-            msg.setText(user.getText());
+            msg.setContent(user.getText(),"text/html");
             Transport.send(msg);
             flag=true;
         }
         catch(Exception e){
-            System.out.println(e);;
+            System.out.println(e);
         }
 
 

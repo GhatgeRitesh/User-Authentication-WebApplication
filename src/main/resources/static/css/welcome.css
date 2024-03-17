@@ -1,6 +1,6 @@
 body{
     background-color:none;
-    background-image: url("./images/6.jpg");
+    background-image: url("/images/6.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }

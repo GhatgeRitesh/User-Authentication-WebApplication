@@ -1,0 +1,65 @@
+body{
+    background-color: beige;
+    margin: auto;
+}
+.temp
+{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    position: relative;
+    top: 25vh;
+    border: 1px solid red;
+    width: 60%;
+    padding: 5%;
+    box-shadow: 0px 2px 2px 2px rgba(23,23,23,0.27);
+}
+.head{
+    text-align: center;
+    text-decoration: underline;
+    font-size: 1.7em;
+}
+.userName{
+    text-align: center;
+}
+button{
+   margin-top: 2vh;
+}
+.inputform{
+    margin: auto;
+    border: 1px solid beige;
+}
+#inputbutton{
+    margin-left: 35%;
+    margin-top: 2vh;
+    /* border: ; */
+    background-color:transparent;
+    color: rgb(20, 13, 13);
+
+    font-size: 1.2rem;
+    padding: 3%;
+}
+label{
+    font-size:1.2rem ;
+}
+input{
+   border: none;
+   border-bottom: 1px solid red;
+   background-color: bisque;
+   border-radius: 0.3rem;
+   font-size: 1.2rem;
+   color: rgb(6, 4, 4);
+   padding-inline-start: 2vw;
+   padding-inline-end: 2vw;
+}
+input:active #input{
+    border: none;
+    border-bottom: 1px solid red;
+    background-color: bisque;
+    border-radius: 0.3rem;
+}
+#back{
+    width: 20%;
+    font-size: 1.2rem;
+}

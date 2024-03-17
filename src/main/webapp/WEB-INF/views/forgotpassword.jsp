@@ -31,14 +31,21 @@
                   %>
                   <p>* Error in Sending the Email </p>
                   <%} session.invalidate();%>
-        <div class="form_details">
+        <div class="form_details" id="myForm">
             <form action="Passreset" method="post" id="myForm">
                 <p>*To access the account you have to verify with Eamil Id </p>
                 <label for="Email_Id">Email Id or User Name</label><br>
-                <--<div class="animation" style="margin:auto;"></div>-->
+                <div class="animation" style="margin:auto;display:none" id="animate"></div>
                 <input type="text" name="Email_Id"  autocomplete="off" required value=${Email_Id} ><br>
-                <button>Send</button><br><br>
+                <button onclick="animate()">Send</button><br><br>
                 </form>
+                <script>
+                  function animate() {
+                                  var animate = document.querySelector('#animate');
+                                  animate.style.display = 'block'; // Display the input form
+                                  document.getElementById('myForm').submit();
+                              }
+                </script>
         </div>
         <div class="content" style="color: rgb(237, 237, 237); text-align: left;">
             Go back to <a href="Login"> Login </a> Page

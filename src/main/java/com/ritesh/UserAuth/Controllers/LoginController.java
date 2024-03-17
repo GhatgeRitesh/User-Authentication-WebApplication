@@ -3,6 +3,10 @@ package com.ritesh.UserAuth.Controllers;
 import com.ritesh.UserAuth.DBUtils.JDBC;
 import com.ritesh.UserAuth.GMailAPI.GMailSender;
 import com.ritesh.UserAuth.Hashing.GetHash_ID;
+import jakarta.mail.Message;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +28,13 @@ public class LoginController {
     @Autowired
     private final GetHash_ID hash;
 
-    public LoginController(User user, GetHash_ID hash) {
+    @Autowired
+    private final GMailSender sender;
+
+    public LoginController(User user, GetHash_ID hash, GMailSender sender) {
         this.user = user;
         this.hash = hash;
+        this.sender = sender;
     }
 
     // this is the Login Page Controller used to handel the Login transactions
@@ -59,6 +67,25 @@ public class LoginController {
             return "redirect:/Login";
         }
 
+//-----------------------------code for the login email ----------------------------------------------------------------
+       String Text="<html lang=\"en\">\n" +
+               "<body>\n" +
+               "Dear User <br>\n" +
+               "\n" +
+               "You have Just Logged in into UserAuth Web Application \n "+
+               "If you have any questions or concerns, please don't hesitate to contact our support team at <a href=\"www.GoogleSupport.com\">Support</a>" +
+               " <br>\n" +
+               "\n" +
+               "Best regards,\n" +
+               "UserAuth Web Services\n" +
+               "</body>\n" +
+               "</html>";
+        String Text2="Logged in UserAuth";
+        user.setTo(email_ID);
+        user.setText(Text);
+        user.setSubject(Text2);
+        boolean b= sender.SendEmail();
+        session.setAttribute("UserName",user.getEmail_Id());
 //----------------------------------------------------------------------------------------------------------------------
         return "Welcome";
     }

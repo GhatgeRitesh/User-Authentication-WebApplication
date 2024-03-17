@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import javax.sql.DataSource;
+import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -137,6 +139,19 @@ public class JDBC {
             }
 
       return true;
+    }
+
+    public boolean delete() {
+        JdbcTemplate temp=new JdbcTemplate(dataSource);
+
+        String query="delete from userlist where  email=?";
+        try{
+            temp.update(query,user.getEmail_Id());
+        }catch(Exception e){
+            System.out.println(e);
+            return false;
+        }
+        return true;
     }
 //-------------------------------------------------END OF CLASS---------------------------------------------------------
 }

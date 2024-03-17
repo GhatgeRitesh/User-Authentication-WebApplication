@@ -29,8 +29,11 @@
        <!-- ---------------------------------------------------------------------------------------------------------------------- -->
        <div class="side">
          <div class="buttons">
-            <a href="/logout"><button>Logout</button></a>
-            <a href="/deleteaccount"><button>Delete Account</button></a>
+            <a href="/index"><button>Logout</button></a>
+<!-- ---------------------------------------------iframe delete code ----------------------------------------------------------- -->
+           <a href="/delete"><button>DeleteAccount</button></a>
+
+   <!--   ------------------------------------------------------------------------------------------------------------------------->
             <a href="/Userlist"><button>GetUserlist</button></a>
          </div>
        </div>
