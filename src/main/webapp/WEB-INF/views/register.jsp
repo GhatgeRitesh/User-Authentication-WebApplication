@@ -14,15 +14,29 @@
 <body>
     <div class="temp">
         <div class="content">
+        <%
+                     String SaveError=(String)session.getAttribute("ServerError");
+                     if(SaveError!=null && SaveError.equals("4"))
+                     {
+                     %>
+                     <p style="color:red;">* server Error please try later.</p><br>
+                     <%}%>
           Register
         </div>
         <div class="form_details">
              <form action="submit_register" method="post">
+             <%
+             String NameError=(String)session.getAttribute("NameError");
+             if(NameError!=null && NameError.equals("3"))
+             {
+             %>
+             <p style="color:red;">* User Name Already used please provide another.</p><br>
+             <%}%>
                <label for="Name">Enter Your Name</label><br>
                <input type="text" name="Name" onclick="clearInput(this)" value="Name" autocomplete="off" required><br>
                <%
-                String error=(String)session.getAttribute("EmailError");
-                if(error!=null && error.equals("2"))
+                String emailerror=(String)session.getAttribute("GmailError");
+                if(emailerror!=null && emailerror.equals("2"))
                 {
                %>
                <p>*Only Gmail ID is valid for this project please enter valid email ID</p>
@@ -30,9 +44,9 @@
                <label for="EmailId">Email Id</label><br>
                <input type="text" name="EmailId" onclick="clearInput(this)" autocomplete="off" required><br>
                *set password of length 8 charset <br>
-               <% String req=(String)session.getAttribute("PassError");
+               <% String passerror=(String)session.getAttribute("PassError");
 
-                                    if(req!=null && req.equals("1")){
+                                    if(passerror!=null && passerror.equals("1")){
                                           %>
                                           <p style="color:red; z-index:2;">!The password length is invalid plz enter 8 digit password</p>
                                           <% } %>

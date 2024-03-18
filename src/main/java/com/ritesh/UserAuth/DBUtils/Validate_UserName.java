@@ -1,5 +1,6 @@
 package com.ritesh.UserAuth.DBUtils;
 
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 
 @Component
+@Log
 public class Validate_UserName {
     // code for the validating the similar User Names Present into the databases
     @Autowired
@@ -16,10 +18,14 @@ public class Validate_UserName {
         this.dataSource = dataSource;
     }
     public boolean validate_Name(String Name){
+         log.info("Scanning Name");
+
          JdbcTemplate temp=new JdbcTemplate(dataSource);
 
-        String sql = "SELECT EXISTS(SELECT 1 FROM your_table_name WHERE Name LIKE ?)";
-        Integer result = temp.queryForObject(sql, new Object[]{ "%" + Name + "%" }, Integer.class);
-        return result != null && result == 1;
+        String sql = "SELECT CASE WHEN EXISTS (SELECT 1 FROM userlist WHERE Name = ?) THEN 1 ELSE 0 END";
+        Integer result = temp.queryForObject(sql, new Object[]{Name}, Integer.class);
+        if(result==1)
+            return false;
+        return true;
     }
 }

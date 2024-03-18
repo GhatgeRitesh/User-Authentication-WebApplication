@@ -58,30 +58,32 @@ public class RegisterController{
         //----------------------------------------for handling the same username ---------------------------------------
         if(!Name.validate_Name(name))
         {
+            log.warning("Error in Name");
             String error3="3";
             session.setAttribute("NameError",error3);
+            return "redirect:/register";
+        }
+
+        //---------- ----------------------------for Email Validation ------------------------------------------------
+
+        if(!Gregex.validate_gmail(email_ID))
+        {
+            log.warning("Error in Gmail");
+            String error2="2";
+            session.setAttribute("GmailError",error2);
             return "redirect:/register";
         }
 
         //----------------------------------------for password verification -------------------------------------------
         if(!regex.validate(Password))
         {
+            log.warning("Error in password");
             String error1="1";
             session.setAttribute("PassError",error1);
             return "redirect:/register";
         }
         //------------------------------------For the Hash Id ------------------------------------------------------------------
         Password= hash.Hash_Id(Password);
-        //---------- ----------------------------for Email Validation ------------------------------------------------
-        if(!Gregex.validate_gmail(email_ID))
-        {
-            String error2="2";
-            session.setAttribute("GamilError",error2);
-            return "redirect:/register";
-        }
-
-
-        session.invalidate();
 
         // using getter and setters to integrate the data into user class
         System.out.println("setting the name");
@@ -91,6 +93,7 @@ public class RegisterController{
 
 
        if(!b.save()){
+           log.warning("error in server while utilizing jdbctemplate");
            String error4="4";
            session.setAttribute("ServerError",error4);
           return "redirect:/register";

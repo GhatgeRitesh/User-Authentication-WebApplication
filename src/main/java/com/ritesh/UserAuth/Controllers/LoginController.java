@@ -3,6 +3,7 @@ package com.ritesh.UserAuth.Controllers;
 import com.ritesh.UserAuth.DBUtils.JDBC;
 import com.ritesh.UserAuth.GMailAPI.GMailSender;
 import com.ritesh.UserAuth.Hashing.GetHash_ID;
+import com.ritesh.UserAuth.Regex_Validation.Password_Validation;
 import jakarta.mail.Message;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
@@ -23,7 +24,10 @@ import com.ritesh.UserAuth.Model.User;
 @Log
 public class LoginController {
     @Autowired
+    private final Password_Validation regex;
+    @Autowired
     private JDBC b;
+    @Autowired
     private final User user;
     @Autowired
     private final GetHash_ID hash;
@@ -31,7 +35,8 @@ public class LoginController {
     @Autowired
     private final GMailSender sender;
 
-    public LoginController(User user, GetHash_ID hash, GMailSender sender) {
+    public LoginController(Password_Validation regex, User user, GetHash_ID hash, GMailSender sender) {
+        this.regex = regex;
         this.user = user;
         this.hash = hash;
         this.sender = sender;
@@ -49,7 +54,7 @@ public class LoginController {
                               ){
 
  //-------------------------------function for the valid password length ---------------------------------------------
-   if(Password.length()!=8){
+   if(!regex.validate(Password)){
        log.info("Password length invalid");
        String error="1";
        session.setAttribute("PassError",error);
