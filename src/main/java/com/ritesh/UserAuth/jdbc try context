@@ -1,0 +1,49 @@
+import java.util.*;
+import jakarta.JdbcTemplate.*;
+import java.Collections.*;
+
+import statements.
+ 
+@Service
+@Component
+public class compact_Jdbc{
+      // program for the jdbc compression while validating the best features 
+     
+     @Autowired
+      private final JdbcTemplate template;
+
+     @Autowired
+     private final User user;
+      
+      public void compact_Jdbc(JdbcTemplate template,User user){
+            this.template=template;    
+            this.user=user; 
+      }
+    public boolean Validate(String password)
+    {
+          //validating the password from the db name userauth_test
+          //validating can go with the hash method
+       
+        String query="select userauth_test";
+        String query2="select password from userlist where Name=? && email=? ";
+  
+        password=password.hash();
+        
+         try{
+              
+          // selecting the result object for the 1 and 0 values for the verification of the password 
+         // while having the array object as 1 means the password is correct  
+              
+         int[] result=temp.upadateQueryForArray(qeury1,query2,new object[name,email],String.class);
+          
+       if(result.size()!=0)
+        {
+         return true;
+        }
+         return false
+        }catch(Exception e){
+          System.out.println(e);
+       }   
+    }
+     
+}
