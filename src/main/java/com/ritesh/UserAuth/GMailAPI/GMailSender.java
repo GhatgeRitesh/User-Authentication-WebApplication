@@ -50,6 +50,7 @@ public class GMailSender {
             msg.setSubject(user.getSubject());
             msg.setContent(user.getText(),"text/html");
             Transport.send(msg);
+            System.out.println("Gmail Sent Successfully");
             flag=true;
         }
         catch(Exception e){

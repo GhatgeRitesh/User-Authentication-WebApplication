@@ -21,7 +21,7 @@ public class UserAuthApplication implements CommandLineRunner {
 		SpringApplication.run(UserAuthApplication.class, args);
 	}
 	@Override
-	public void run(final String...abc){
+	public void run(final String...abc) {
 		//System.out.println("the dataSource is --> "+dataSource.toString());
 
 		log.info("Application Started ");

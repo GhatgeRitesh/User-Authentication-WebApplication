@@ -13,14 +13,13 @@ public class Password_Validation {
     public boolean validate(String password){
         log.info("Scanning password");
 
-        String pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+={}\\[\\]:;\"'<>,.?/\\\\])[A-Za-z\\d!@#$%^&*()_+={}\\[\\]:;\"'<>,.?/\\\\]{8,}$";
+        String pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_={}\\[\\]:;\"'<>,.?/\\\\])[A-Za-z\\d!@#$%^&*()_+={}\\[\\]:;\"'<>,.?/\\\\]{8,}$";
 
         Pattern p=Pattern.compile(pattern);
         Matcher matcher1=p.matcher(password);
         System.out.println(matcher1.matches());
         if(!matcher1.matches())
         {
-            System.out.println("invalid password pattern");
             return false;
         }
         return true;

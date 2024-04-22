@@ -9,13 +9,16 @@ import com.ritesh.UserAuth.Regex_Validation.Password_Validation;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 @Controller
@@ -34,9 +37,9 @@ public class RegisterController{
     private final User user;
     @Autowired
     private final GetHash_ID hash;
-    public RegisterController(Password_Validation regex, Gmail_Validation gregex, Validate_UserName Name, User user, GetHash_ID hash) {
+    public RegisterController(Password_Validation regex, Gmail_Validation Gregex, Validate_UserName Name, User user, GetHash_ID hash) {
         this.regex = regex;
-        Gregex = gregex;
+        this.Gregex = Gregex;
         this.Name = Name;
         this.user = user;
         this.hash = hash;
@@ -55,7 +58,7 @@ public class RegisterController{
         //testing the parameters are updated or not
         log.info("Name-> "+name+" email --> "+ email_ID+" password --> "+Password);
 
-        //----------------------------------------for handling the same username ---------------------------------------
+//        ----------------------------------------for handling the same username ---------------------------------------
         if(!Name.validate_Name(name))
         {
             log.warning("Error in Name");

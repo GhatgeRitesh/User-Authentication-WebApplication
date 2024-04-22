@@ -1,42 +1,85 @@
 body{
     background-color: white;
-    background-image:url("/images/7.jpg") ;
-    background-repeat: no-repeat;
-    background-size:1550px 1200px;
+    display: flex;
+    flex-direction: column;
 }
 .template{
   position: relative;
-  top: 20vh;
+  top: 2vh;
   margin: auto;
-  width: 60%;
-  height:auto;
+  width: 75%;
   background:-moz-linear-gradient();
   padding: 5%;
-  border: 1px solid red;
-  box-shadow: 0px 0px 2px 2px rgba(191, 193, 193, 0.87);
+  /* border: 1px solid red; */
+  /* box-shadow: 0px 0px 2px 2px rgba(191, 193, 193, 0.87); */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 0.9vh;
+  overflow: hidden;
+  background-color:grey;
 }
 .head{
     position: relative;
-    top: -4vh;
+    top: 0vh;
+    margin: auto;
+    text-align: center;
     margin-bottom:2vh;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 2.7rem; 
-    color: white;
+    font-size: 4rem;
+    color: rgb(251, 255, 3);
+    /* animation: head_load 1s ease-in-out none infinite; */
     /* text-shadow:5px 3px 3px 3px rgba(96, 48, 42, 0.49) ; */
 }
+/* @keyframes head_load {
+    0%{
+        text-decoration: underline;
+    }
+    100%{
+        color: rgb(244, 246, 246);
+    }
+} */
 .context{
-    background-color: rgba(96, 48, 42, 0.49);
+    background-color: rgba(8, 8, 8, 0.79);
     padding: 5%;
     margin-bottom: 2vh;
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-size: 1.4em;
-    border-radius: 2vh;
+    border-radius: 1rem;
     color: rgb(254, 254, 254);
+    border: 2px solid red;
+    animation: load 2s linear none infinite;
+}
+@keyframes load {
+    0% {
+        border-top: 2px solid rgb(89, 255, 0);
+      }
+      25% {
+        border-right: 2px solid rgb(0, 72, 255);
+      }
+      50%{
+        border-bottom: 2px solid rgb(247, 0, 255);
+      }
+      75%
+    {
+        border-left: 2px solid rgb(0, 255, 234);
+    }
+    100%{
+        border-top: 2px solid yellow;
+    }
+}
+.author{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: rgba(191, 193, 193, 0.87);
+}
+span{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
 }
 .links{
   display:flex;

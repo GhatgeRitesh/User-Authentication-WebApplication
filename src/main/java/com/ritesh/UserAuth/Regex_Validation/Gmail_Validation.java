@@ -20,7 +20,6 @@ public class Gmail_Validation {
 
         if(!matcher.matches())
         {
-            System.out.println("invalid Gmail Pattern");
             return false;
         }
         return true;
