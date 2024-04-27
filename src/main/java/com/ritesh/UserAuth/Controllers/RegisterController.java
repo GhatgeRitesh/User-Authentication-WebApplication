@@ -1,7 +1,6 @@
 package com.ritesh.UserAuth.Controllers;
 
 import com.ritesh.UserAuth.DBUtils.AddNewUser;
-import com.ritesh.UserAuth.DBUtils.JDBC;
 import com.ritesh.UserAuth.DBUtils.Validate_Name;
 import com.ritesh.UserAuth.Hashing.GetHash_ID;
 import com.ritesh.UserAuth.Model.User;

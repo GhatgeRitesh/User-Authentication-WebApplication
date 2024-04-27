@@ -32,7 +32,7 @@ public class AddNewUser {
         }
         try {
             JdbcTemplate temp = new JdbcTemplate(dataSource);
-            String query = "INSERT INTO registry(Id,Name,Email,Password) VALUES(?,?,?,?)";
+            String query = "INSERT INTO register(Id,Name,Email,Password) VALUES(?,?,?,?)";
             temp.update(query, user.getId(), user.getName(), user.getEmail_Id(), user.getPassword());
             return true;
         }

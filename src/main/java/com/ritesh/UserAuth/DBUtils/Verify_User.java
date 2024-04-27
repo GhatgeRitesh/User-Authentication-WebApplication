@@ -32,7 +32,7 @@ public class Verify_User {
         }
         try {
             JdbcTemplate temp = new JdbcTemplate(dataSource);
-            String query = "SELECT EXISTS(Select 1 FROM registry WHERE Email=? AND password=?)";
+            String query = "SELECT EXISTS(Select 1 FROM register WHERE Email=? AND password=?)";
             return temp.queryForObject(query, Boolean.class, user.getEmail_Id(), user.getPassword());
         }catch(Exception e){
             log.warning("Sql Exceptrion :"+e);
