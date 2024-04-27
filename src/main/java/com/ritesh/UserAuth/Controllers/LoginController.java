@@ -1,6 +1,8 @@
 package com.ritesh.UserAuth.Controllers;
 
 import com.ritesh.UserAuth.DBUtils.JDBC;
+import com.ritesh.UserAuth.DBUtils.RetriveUserData;
+import com.ritesh.UserAuth.DBUtils.Verify_User;
 import com.ritesh.UserAuth.GMailAPI.GMailSender;
 import com.ritesh.UserAuth.Hashing.GetHash_ID;
 import com.ritesh.UserAuth.Regex_Validation.Password_Validation;
@@ -26,7 +28,7 @@ public class LoginController {
     @Autowired
     private final Password_Validation regex;
     @Autowired
-    private JDBC b;
+    private final Verify_User verifyUser;
     @Autowired
     private final User user;
     @Autowired
@@ -34,12 +36,16 @@ public class LoginController {
 
     @Autowired
     private final GMailSender sender;
+    @Autowired
+    private final RetriveUserData retriveUserData;
 
-    public LoginController(Password_Validation regex, User user, GetHash_ID hash, GMailSender sender) {
+    public LoginController(Password_Validation regex, Verify_User verifyUser, User user, GetHash_ID hash, GMailSender sender, RetriveUserData retriveUserData) {
         this.regex = regex;
+        this.verifyUser = verifyUser;
         this.user = user;
         this.hash = hash;
         this.sender = sender;
+        this.retriveUserData = retriveUserData;
     }
 
     // this is the Login Page Controller used to handel the Login transactions
@@ -64,33 +70,14 @@ public class LoginController {
         Password=hash.Hash_Id(Password);
         user.setEmail_Id(email_ID);
         user.setPassword(Password);
-        Boolean flag=b.verify();
-        if(!flag){
-            log.info("error verification");
+
+        if(!verifyUser.verifyUser()){
+            log.info("User Not Found");
             String error="2";
-            session.setAttribute("email_invalid",error);
+            session.setAttribute("Invalid_Credentials",error);
             return "redirect:/Login";
         }
-
-//-----------------------------code for the login email ----------------------------------------------------------------
-       String Text="<html lang=\"en\">\n" +
-               "<body>\n" +
-               "Dear User <br>\n" +
-               "\n" +
-               "You have Just Logged in into UserAuth Web Application \n "+
-               "If you have any questions or concerns, please don't hesitate to contact our support team at <a href=\"www.GoogleSupport.com\">Support</a>" +
-               " <br>\n" +
-               "\n" +
-               "Best regards,\n" +
-               "UserAuth Web Services\n" +
-               "</body>\n" +
-               "</html>";
-        String Text2="Logged in UserAuth";
-        user.setTo(email_ID);
-        user.setText(Text);
-        user.setSubject(Text2);
-        boolean b= sender.SendEmail();
-        session.setAttribute("UserName",user.getEmail_Id());
+        retriveUserData.getData();
 //----------------------------------------------------------------------------------------------------------------------
         return "Welcome";
     }

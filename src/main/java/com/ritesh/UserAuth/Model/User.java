@@ -1,5 +1,7 @@
 package com.ritesh.UserAuth.Model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -78,4 +80,7 @@ public class User {
     public void setHashcode(long hashcode) {
         Hashcode = hashcode;
     }
+
+   @Getter @Setter
+    private Long Id;
 }

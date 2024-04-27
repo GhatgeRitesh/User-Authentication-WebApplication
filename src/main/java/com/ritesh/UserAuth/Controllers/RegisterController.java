@@ -1,7 +1,8 @@
 package com.ritesh.UserAuth.Controllers;
 
+import com.ritesh.UserAuth.DBUtils.AddNewUser;
 import com.ritesh.UserAuth.DBUtils.JDBC;
-import com.ritesh.UserAuth.DBUtils.Validate_UserName;
+import com.ritesh.UserAuth.DBUtils.Validate_Name;
 import com.ritesh.UserAuth.Hashing.GetHash_ID;
 import com.ritesh.UserAuth.Model.User;
 import com.ritesh.UserAuth.Regex_Validation.Gmail_Validation;
@@ -15,29 +16,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 
 @Controller
 @Component
 @Log
 public class RegisterController{
     @Autowired
-    private JDBC b;
+    private final AddNewUser addNewUser;
     @Autowired
     private final Password_Validation regex;
     @Autowired
     private final Gmail_Validation Gregex;
     @Autowired
-    private final Validate_UserName Name;
+    private final Validate_Name Name;
     @Autowired
     private final User user;
     @Autowired
     private final GetHash_ID hash;
-    public RegisterController(Password_Validation regex, Gmail_Validation Gregex, Validate_UserName Name, User user, GetHash_ID hash) {
+    public RegisterController(AddNewUser addNewUser, Password_Validation regex, Gmail_Validation Gregex, Validate_Name Name, User user, GetHash_ID hash) {
+        this.addNewUser = addNewUser;
         this.regex = regex;
         this.Gregex = Gregex;
         this.Name = Name;
@@ -56,12 +53,13 @@ public class RegisterController{
                            HttpSession session
     ){
         //testing the parameters are updated or not
-        log.info("Name-> "+name+" email --> "+ email_ID+" password --> "+Password);
+         user.setEmail_Id(email_ID);
+         user.setName(name);
 
 //        ----------------------------------------for handling the same username ---------------------------------------
-        if(!Name.validate_Name(name))
+        if(!Name.isNameAvailable())
         {
-            log.warning("Error in Name");
+            log.info(" Name is not available");
             String error3="3";
             session.setAttribute("NameError",error3);
             return "redirect:/register";
@@ -87,15 +85,10 @@ public class RegisterController{
         }
         //------------------------------------For the Hash Id ------------------------------------------------------------------
         Password= hash.Hash_Id(Password);
-
-        // using getter and setters to integrate the data into user class
-        System.out.println("setting the name");
-        user.setName(name);
-        user.setEmail_Id(email_ID);
         user.setPassword(Password);
 
 
-       if(!b.save()){
+       if(!addNewUser.save()){
            log.warning("error in server while utilizing jdbctemplate");
            String error4="4";
            session.setAttribute("ServerError",error4);
@@ -104,7 +97,7 @@ public class RegisterController{
 
 //-------------------------------------------------------------------------------------------------------------------
         //if all constrainst satisfied
-        return "/Login";
+        return "redirect:/Login";
     }
 
 }
