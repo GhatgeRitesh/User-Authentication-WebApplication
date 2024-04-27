@@ -1,6 +1,6 @@
 package com.ritesh.UserAuth.Controllers;
 
-import com.ritesh.UserAuth.DBUtils.JDBC;
+import com.ritesh.UserAuth.DBUtils.Remove_User;
 import com.ritesh.UserAuth.Hashing.GetHash_ID;
 import com.ritesh.UserAuth.Model.User;
 import jakarta.servlet.http.HttpSession;
@@ -18,13 +18,12 @@ public class deletecontroller {
     private final GetHash_ID hash;
     @Autowired
     private final User user;
-    @Autowired
-    private final JDBC b;
+    @private final Remove_User removeUser;
 
-    public deletecontroller(GetHash_ID hash, User user, JDBC b) {
+    public deletecontroller(GetHash_ID hash, User user, Remove_User removeUser) {
         this.hash = hash;
         this.user = user;
-        this.b = b;
+        this.removeUser = removeUser;
     }
 
     @GetMapping("/delete")
@@ -38,20 +37,9 @@ public class deletecontroller {
         //----------------code for the validation of the password -------------------------------------
         String hashcode=hash.Hash_Id(pass);
         user.setPassword(hashcode);
-        boolean flag=b.verify();
-        if(flag)
-        {
-            boolean flag2=b.delete();
-            if(flag2){System.out.println("Deleted Successfully");}
-            else{
-                System.out.println("deletion error");
-            }
-        }
-        else{
-            String error="1";
-            session.setAttribute("error",error);
-            return "redirect:/delete";
-        }
+
+        removeUser.deleteUser();
+
         return "UserAuth";
     }
 }

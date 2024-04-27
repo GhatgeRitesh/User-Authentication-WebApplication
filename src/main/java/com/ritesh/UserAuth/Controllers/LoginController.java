@@ -1,15 +1,11 @@
 package com.ritesh.UserAuth.Controllers;
 
-import com.ritesh.UserAuth.DBUtils.JDBC;
+
 import com.ritesh.UserAuth.DBUtils.RetriveUserData;
 import com.ritesh.UserAuth.DBUtils.Verify_User;
 import com.ritesh.UserAuth.GMailAPI.GMailSender;
 import com.ritesh.UserAuth.Hashing.GetHash_ID;
 import com.ritesh.UserAuth.Regex_Validation.Password_Validation;
-import jakarta.mail.Message;
-import jakarta.mail.Transport;
-import jakarta.mail.internet.InternetAddress;
-import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import com.ritesh.UserAuth.Model.User;
 @Controller
 @Service

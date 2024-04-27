@@ -100,7 +100,6 @@ public class ForgotPassword {
 
         }
         session.setAttribute("Email_Id",Email_Id);
-
         return "/Code Verification";
     }
 }
