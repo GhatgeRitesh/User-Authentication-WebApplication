@@ -18,7 +18,7 @@
         <div class="userName">
             <p id="name" style="text-align: center;font-size:1.4rem;">${userName}</p> <br>
             Do you want to delete this account permanently? <br>
-            <button onclick="password_function()" id="yes">✅Yes!</button> <button onclick="/Welcome" id="yes">❌ No</button> <br><br>
+            <button onclick="password_function()" id="yes">✅Yes!</button> <button onclick="window.location.href='/Welcome'" id="yes">❌ No</button> <br><br>
         </div>
         <script>
             function password_function() {
@@ -46,7 +46,7 @@
     </div>
 
     <div class="backbutton">
-     <button onclick="/Welcome" id="back">🔙</button>
+     <button onclick="window.location.href= '/Welcome'" id="back">🔙</button>
     </div>
 </div>
 </body>

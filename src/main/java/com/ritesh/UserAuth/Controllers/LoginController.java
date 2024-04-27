@@ -47,7 +47,7 @@ public class LoginController {
     public String login() {
         return "Login";
     }
-    @PostMapping("submit")
+    @PostMapping("/submit")
     public String login_Check(@RequestParam("Email_id")String email_ID,
                               @RequestParam("password")String Password,
                               HttpSession session
@@ -61,7 +61,7 @@ public class LoginController {
        return "redirect:/Login";
    }
 // ------------------------------function for the password check ----------------------------------------------------
-       Password=hash.Hash_Id(Password);
+        Password=hash.Hash_Id(Password);
         user.setEmail_Id(email_ID);
         user.setPassword(Password);
         Boolean flag=b.verify();

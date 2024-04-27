@@ -12,10 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
     //     @GetMapping(value="/home")
-    @GetMapping("/index")
+    @GetMapping("/UserAuth")
     public String index() {
         System.out.println("home method started to run succesfully");
-        return "/index";
+        return "index";
     }
 }
 

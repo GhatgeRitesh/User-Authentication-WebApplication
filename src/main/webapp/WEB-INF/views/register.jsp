@@ -1,64 +1,95 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/register.css">
-</head>
-<body>
-        <div class="head">
-                                         Register
-        </div>
-        <div class="template">
-        <%
-                             String SaveError=(String)session.getAttribute("ServerError");
-                             if(SaveError!=null && SaveError.equals("4"))
-                             {
-                             %>
-                             <p style="color:red; font-size:1.1rem;">* server Error please try later.</p><br>
-                             <% }%>
-                <%
-                             String NameError=(String)session.getAttribute("NameError");
-                             if(NameError!=null && NameError.equals("3"))
-                             {
-                             %>
-                             <p style="color:red;font-size:1.1rem;">* User Name Already used please provide another.</p><br>
-                             <%}%>
-                <%
-                                String emailerror=(String)session.getAttribute("GmailError");
-                                if(emailerror!=null && emailerror.equals("2"))
-                                {
-                               %>
-                               <p style="color:red;font-size:1.1rem;>*Only Gmail ID is valid for this project please enter valid email ID</p>
-                               <% } %>
-                <% String passerror=(String)session.getAttribute("PassError");
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">   
+        <meta http-equiv="Expires" content="0">
+        <link rel="stylesheet" href="/css/register.css">
+        <title>Vault Register</title>
+    </head>
+    <body>
+        <div class="temp">
+            <div class="stmt">
 
-                                                    if(passerror!=null && passerror.equals("1")){
-                                                          %>
-                                                          <p style="color:red; z-index:2;font-size:1.1rem;">!The password length is invalid plz enter 8 digit password</p>
-                                                          <% } %>
-        <div class="form">
-             <form action="submit_register" method="post">
-               <label for="Name">User Name</label><br>
-               <input type="text" name="Name"  autocomplete="off" required><br>
-               <label for="EmailId">Email Id</label><br>
-               <input type="text" name="EmailId"  autocomplete="off" required><br>
-               *set password of length 8 charset <br>
-               <label for="password">Password</label><br>
-               <input type="text" name="password"   autocomplete="off" required><br>
-               <input type="checkbox" id="check" required> *Accept all T&C <br><br>
-               <button>Register</button>
-             </form>
-             </div>
-             </div>
-             <div class="links">
-            <a href="index"><button id="links-button">Home</button></a>  <a href="Login"><button id="links-button">Login</button></a>
             </div>
-</body>
-</html>
+                    <div class="innertemp">
+                        <div class="blur-overlay"></div>
+                        <div class="headtxt">
+                          Welcome To Vault
+                        </div>
+                        <div class="context">
+                          Your safe haven for personal data storage. We keep your information secure on our servers,
+                           ensuring your privacy is always protected.
+                           Join us and experience peace of mind with every upload.
+                        </div>
+                    </div>
+            <div class="formtemp">
+                 <div class="regtxt">
+                    User Registration
+                    <div class="Errors">
+                                   <%
+                                    String pass=(String)request.getAttribute("PassError");
+                                    if(pass!=null && pass.equals("1"))
+                                    {
+                                    %>
+                                    <p>*please enter strong password</p>
+                                 <% } %>
+                                             <%
+                                                 String mail=(String)request.getAttribute("MailError");
+                                                 if(mail!=null && mail.equals("2"))
+                                                 {
+                                                  System.out.println("error grabbed by view");
+                                                 %>
+                                                 <p>*please enter valid G-Mail id</p>
+                                              <% } %>
+                                               <%
+                                                 String server=(String)request.getAttribute("MailProcessingError");
+                                                 if(server!=null && server.equals("3"))
+                                                 {
+                                                 %>
+                                                 <p>*please try later Server Error</p>
+                                              <% } %>
+                    </div>
+                 </div>
+               <form action="submit_register" method="post">
+
+                <div class="name">
+                    <img src="/images/user (1).png" alt="asdas" id="imglogo">
+                    <input type="text" name="Name" value="username" autocomplete="off" onclick="clearinput(this)" required>
+                </div>
+
+                <div class="email">
+                    <img src="/images/mail (2).png" alt="asdas" id="imglogo">
+                    <input type="text" name="EmailId" value="email" autocomplete="off" onclick="clearinput(this)"  required>
+                </div>
+
+                <div class="password">
+                    <img src="/images/password (1).png" alt="asdas" id="imglogo">
+                    <input type="password" name="password" value="password" autocomplete="off" onclick="clearinput(this)" required>
+                </div>
+
+                <div class="check">
+                  <input type="checkbox" required>*Accept all T&C
+                </div>
+
+                <div class="reg">
+                    <button>Register</button>
+                </div>
+
+               </form>
+
+               <script>
+                function clearinput(inputField)
+                 {
+                   inputField.value = '';
+                 }
+               </script>
+
+            </div>
+        </div>
+    </body>
+    </html>

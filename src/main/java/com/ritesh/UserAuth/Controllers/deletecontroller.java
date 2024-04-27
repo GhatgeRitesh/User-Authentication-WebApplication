@@ -52,6 +52,6 @@ public class deletecontroller {
             session.setAttribute("error",error);
             return "redirect:/delete";
         }
-        return "index";
+        return "UserAuth";
     }
 }

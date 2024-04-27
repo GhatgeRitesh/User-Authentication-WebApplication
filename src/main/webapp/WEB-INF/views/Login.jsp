@@ -1,74 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/css/login.css">
-</head>
-<body>
-                       <!--               JavaScript methods             -->
-                         <script>
-                          // JavaScript function to clear input field value on click
-                             function clearInput(inputField) {
-                              inputField.value = '';
-                             }
-                         </script>
-
-  <!--  <div class="image">
-        <img src="/images/login.png" alt="user logo security pic">
-    </div> -->
-    <div class="temp">
-        <div class="context">
-            <b>Login</b>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <link rel="stylesheet" href="/css/Login.css">
+        <title>Vault Login</title>
+    </head>
+    <body>
+        <div class="head">
+            <div class="logo">
+             <img src="/images/mylogo1.png" alt="logo">
+            </div>
+            <div class="links">
+            <a href="#">
+                <li>About</li>
+            </a><a href="#">
+                <li>Links</li>
+            </a><a href="#">
+                <li>Review</li>
+            </a><a href="#">
+                <li>Contact</li>
+            </a>
+            </div>
+            <div class="button">
+                <a href="register"><button>Register</button></a>
+            </div>
         </div>
 
+        <div class="template1">
+            <div class="template2">
+                <p id="Name">VaultDrive</p>
+              <div class="text">
+                <p id="top">Nice to see you again !</p><br>
+               WELCOME BACK <br>
+                <p id="bottom">Your trusted destination for storing and managing all your uploaded data with peace of mind.
+                     Your files are safeguarded here, ensuring privacy and accessibility whenever you need them.
+                     Explore the ease and security of our vault and take control of your data today!</p>
+              </div>
+            </div>
+            <div class="formtemp">
+                <div class="context">
+                    Login Account
+                </div>
+                <form action="/submit" method="post">
+                    <div class="input">
+                        <img src="/images/mail (2).png" alt="i" id="icon">
+                        <input type="text" name="Email_id" autocomplete="off" value="Email Id" required>
+                    </div>
+                    <div class="input">
+                        <img src="/images/password (1).png" alt="i" id="icon">
+                        <input type="text" name="password" autocomplete="off" value="Password" required>
+                    </div>
 
-        <div class="form_details">
-                <!-- <div class="input_logo1">
-                     <img src="/images/user_loog.png">
-                  </div>
-                   <div class="input_logo2">
-                        <img src="/images/password_logo.jpg">
-                   </div> -->
-<!-- ----------------------------------------------  Form Code  ------------------------------------------------------->
-               <form action="/submit" method="post">
-                   <label for="Email_Id" >User Email </label><br>
-                   <input type="text" name="Email_id" value=" User Email" onclick="clearInput(this)" autocomplete="off" required><br>
-             <!--                    java Session for valid password                              -->
-
-                      <% String req=(String)session.getAttribute("Passerror");
-                      if(req!=null && req.equals("1")){
-                           %>
-                           <p style="color:red; z-index:2;">!The password length is invalid plz enter 8 digit password</p>
-                           <% }%>
-
-                      <%
-                        String error=(String)session.getAttribute("email_invalid");
-                        if(error!=null)
-                        {
-                          %>
-                          <p style="color:red; z-index:2;">invalid email_id or password</p>
-                        <%}%>
-                     
-              <!--                             java session end                                  -->
-                   <label for="password">Password</label><br>
-                   <input type="text" name="password"  value=" Password" onclick="clearInput(this)" autocomplete="off" required><br>
-                   <button>Login</button>
-               </form>
+                    <div class="butt">
+                        <button>Login</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
- <!--*********************************************Bottom Links*******************************************************-->
-        <div class="otherLinks">
-            <a href="forgotpassword">Forgot Password !</a><br>
-            <a href="register">New Register</a>
-        </div>
-    </div>
-
-</body>
-</html>
+    </body>
+    </html>

@@ -24,8 +24,7 @@ public class Validate_UserName {
 
         String sql = "SELECT CASE WHEN EXISTS (SELECT 1 FROM userlist WHERE Name = ?) THEN 1 ELSE 0 END";
         Integer result = temp.queryForObject(sql, new Object[]{Name}, Integer.class);
-        if(result==1)
-            return false;
-        return true;
+        log.info("the query result for Name Validation : "+result );
+        return result != 0;
     }
 }

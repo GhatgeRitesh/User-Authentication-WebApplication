@@ -1,147 +1,172 @@
 body{
-    background-image: url("/images/login.jpg");
-    background-repeat:repeat;
-    background-size:cover;
-    display:grid;
-    justify-content:center;
+    display: block;
+    background-color: rgba(225, 225, 225, 0.512);
 }
-.image{
-  width:50%;
-  height:20vh;
-  display:block;
-  object-fit:scale-down;
+.head{
+    position: relative;
+    top: 0%;
+    display: inline-flex;
+    height: 10vh;
+    width: 100%;
+    /* border: 1px solid red; */
+    justify-content: space-around;
+    background-color: rgb(2, 2, 78);
 }
-.temp{
-    display: grid;
-    justify-content:center;
+.logo
+{
     position:relative;
-    top:33%;
-    margin:auto;
-    margin-left:25vw;
-    width:25vw;
-    height:50vh;
-    padding: 2vw;
-    border: 2px solid rgb(85, 160, 231);
-    box-shadow: 0px 0px 2px 2px rgb(166, 192, 223);
-    border-radius: 5vh;
+    top: 12.5%;
+    object-fit: scale-down;
+    height: 75%;
+    width: 5%;
+    margin-right: 10%;
+    /* border: 1px solid red; */
+}
+.logo img{
+    width: 100%;
+    height: 100%;
+}
+.links{
+    position: relative;
+    top: 5%;
+    /* border: 1px solid red; */
+    width: 40%;
+    height: 90%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.links a{
+    text-decoration: none;
+    color: white;
+    list-style: none;
+    position: relative;
+    top: 36%;
+    font-size: 1.1em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.button
+{
+    position: relative;
+    top: 35%;
+    width: 12%;
+}
+.button button{
+    height: 40%;
+    width: 100%;
+    border-radius:0.3rem ;
+    outline: none;
+    background-color: rgb(0, 113, 252);
+    border: none;
+    font-size: 1rem;
+}
+.template1{
+    position: relative;
+    margin-left: 10%;
+    top: 10vh;
+    width: 80%;
+    height: 65vh;
+    /* border: 1px solid rgb(247, 167, 167); */
+    box-shadow: 0px 0px 14px 14px  rgba(7, 6, 6, 0.2);
+    display: inline-flex;
+    flex-direction: row;
+}
+#Name{
+    position: absolute;
+    top: -2vh;
+    margin-left: 2vw;
+    font-size: 2rem;
+    color: rgb(41, 212, 246);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+.template2{
+    position: relative;
+    width: 45%;
+    /* border: 1px solid red; */
+    background-image: url(/images/temp2.jpg);
+    filter: blur(0px);
+    background-size:calc(1200px );
+    background-repeat: no-repeat;
+}
+.text
+{
+    color: white;
+    text-align: center;
+    position: relative;
+    top: 14%;
+    height: 60%;
+    /* border: 1px solid yellow; */
+    font-size: 2rem;
+}
+#top {
+    position: relative;
+    font-size: 1.2rem;
+    /* border: 1px solid red; */
+}
+#bottom{
+    position: relative;
+    margin: auto;
+    top: 2vh;
+    font-size: 1.1rem;
+    text-decoration: wavy;
+    width: 80%;
+    text-align: center;
+}
+.formtemp{
+    position: relative;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    top: -5vh;
+     /* border: 1px solid red;  */
 }
 .context{
-    display: block;
-    color: white;
-    font-size: 5vh;
-    font-family:Arial;
+    position: relative;
     text-align: center;
-    margin-left:-5%;
+    font-size: 2rem;
+    margin-bottom: 6vh;
+    color: blue;
 }
-.form_details{
-    position:relative;
-    top:1vh;
-    margin-left: 5vw;
-    margin-right: 19vw;
-    overflow:hidden;
-    height: 40vh;
-    width: 65%;
-    display: block;
-    justify-content: center ;
-
-}
-
-.form_details label {
-    margin: auto;
-    margin-top:2vh;
-    font-size:3vh;
-    font-family: 'Times New Roman', Times, serif;
-    color:white;
-}
-button{
-    position:relative;
-    top:2vh;
-    width:80%;
-    height:5vh;
-    margin: auto;
-    margin-left:5%;
-    border:none;
-    border-radius:3rem;
-    background-image: url("/images/button-back.jpg");
-    font-size: 2.7vh;
-}
-button:hover{
-    position:relative;
-    top:2vh;
-    width:80%;
-    margin: auto;
-    margin-left:5%;
-    height:6vh;
-    border:none;
-    font-size: 4vh;
-    background-image: url("/images/button-back.jpg");
-    box-shadow: 2px 2px 3xp 2px rgb(210, 120,120) ;
-}
-input{
-    outline:none;
-    border:none;
-    border-bottom: 1px solid grey;
-    width: 90%;
-    color: grey;
-    height: 4vh;
-    margin: auto;
-    background-color:none;
-    margin-bottom: 5%;
-    font-size:2.4vh;
-    border-radius:2vh;
-}
-input:hover{
-    border:none;
-    border-bottom: 1px solid grey;
-    height: 5vh;
-    box-shadow: 0px 4px 3xp 2px rgb(123,22,34);
-}
-.otherLinks{
-    position:relative;
-    margin:auto;
-    margin-left: 16%;
-    top: -3vh;
+.input
+{
+    position: relative;
+    top: 0vh;
+    margin-left:25% ;
+    margin-bottom: 4vh;
+    border: 1px solid blue;
+    width: 50%;
+    /* height: vh; */
     display: inline-flex;
-    justify-content: center;
-    gap: 1vw;
-
+    border: none;
+    border-radius: 0.3rem;
+    background-color: rgb(210, 210, 210);
 }
-.otherLinks a{
-    text-align: center;
-    text-decoration: none;
-    color:white;
-    font-size:2.7vh;
-    outline:none;
+.input img{
+    margin-right: 5%;
 }
-.otherLinks a:hover{
-    text-decoration: none;
-    box-shadow: 0px 0px 2px 2px rgb(123,123,123);
-    color:white;
+.input input{
+    width: 75%;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    font-size: 1.2rem;
 }
-.input_logo1{
- z-index:-2;
- position:relative;
-top:35%;
-margin-left:-2%;
-background-color:white;
-width:33px;
- height:32px;
+.butt{
+    position: relative;
+    margin: auto;
 }
-.input_logo2{
-z-index:-2;
-position:relative;
-top:44%;
-background-color:white;
-width:33px;
- height:32px;
-}
-.input_logo1 img{
- object-fit:scale-down;
- width:33px;
- height:32px;
-}
-.input_logo2 img{
- object-fit:scale-down;
- width:33px;
- height:32px;
+.butt button{
+     font-size: 1.2em;
+     border: none;
+     outline: none;
+     background-color: rgb(17, 1, 85);
+     width: 40%;
+     margin-left: 30.5%;
+     border-radius: 0.4rem;
+     padding: 1%;
+     color: white;
 }
