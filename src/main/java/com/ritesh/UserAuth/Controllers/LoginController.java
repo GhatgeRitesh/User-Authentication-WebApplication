@@ -3,7 +3,7 @@ package com.ritesh.UserAuth.Controllers;
 
 import com.ritesh.UserAuth.DBUtils.RetriveUserData;
 import com.ritesh.UserAuth.DBUtils.Verify_User;
-import com.ritesh.UserAuth.GMailAPI.GMailSender;
+import com.ritesh.UserAuth.GMailControls.GMailSender;
 import com.ritesh.UserAuth.Hashing.GetHash_ID;
 import com.ritesh.UserAuth.Regex_Validation.Password_Validation;
 import jakarta.servlet.http.HttpSession;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.ritesh.UserAuth.Model.User;
+import com.ritesh.UserAuth.Entity.User;
 @Controller
 @Service
 @Log

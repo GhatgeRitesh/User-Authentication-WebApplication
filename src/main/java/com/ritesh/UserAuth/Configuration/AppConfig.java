@@ -1,6 +1,6 @@
 package com.ritesh.UserAuth.Configuration;
 
-import com.ritesh.UserAuth.Model.User;
+import com.ritesh.UserAuth.Entity.User;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class AppConfig {
     public DataSource dataSource() throws SQLException {
         DataSource dataSource = DataSourceBuilder.create()
                 .driverClassName("com.mysql.cj.jdbc.Driver")
-                .url("jdbc:mysql://localhost:3306/userauth_test")
+                .url("jdbc:mysql://localhost:3306/userauth")
                 .username("root")
                 .password("Rit!@#1115")
                 .build();

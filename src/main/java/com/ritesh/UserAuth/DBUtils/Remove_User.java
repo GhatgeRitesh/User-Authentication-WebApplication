@@ -1,6 +1,6 @@
 package com.ritesh.UserAuth.DBUtils;
 
-import com.ritesh.UserAuth.Model.User;
+import com.ritesh.UserAuth.Entity.User;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

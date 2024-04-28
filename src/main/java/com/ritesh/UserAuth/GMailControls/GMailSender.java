@@ -1,6 +1,6 @@
-package com.ritesh.UserAuth.GMailAPI;
+package com.ritesh.UserAuth.GMailControls;
 
-import com.ritesh.UserAuth.Model.User;
+import com.ritesh.UserAuth.Entity.User;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 import java.util.Properties;
 @Component
 public class GMailSender {
-    @Autowired
-    private final User user;
 
-    public GMailSender(User user) {
-        this.user = user;
+    @Autowired
+    private final GMailEntity gMailEntity;
+
+    public GMailSender( GMailEntity gMailEntity) {
+        this.gMailEntity = gMailEntity;
     }
 
     public Boolean SendEmail(){
-        boolean flag=false;
 
         //logic
 
@@ -45,19 +45,17 @@ public class GMailSender {
         //MimeMessage Code to develop matter of the Email
         try{
             Message msg=new MimeMessage(session);
-            msg.setRecipient(Message.RecipientType.TO,new InternetAddress(user.getTo()));
+            msg.setRecipient(Message.RecipientType.TO,new InternetAddress(gMailEntity.getTo()));
             msg.setFrom(new InternetAddress(from));
-            msg.setSubject(user.getSubject());
-            msg.setContent(user.getText(),"text/html");
+            msg.setSubject(gMailEntity.getSubject());
+            msg.setContent(gMailEntity.getText(),"text/html");
             Transport.send(msg);
             System.out.println("Gmail Sent Successfully");
-            flag=true;
+            return true;
         }
         catch(Exception e){
             System.out.println(e);
         }
-
-
-        return flag;
+        return false;
     }
 }

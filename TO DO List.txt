@@ -1,0 +1,4 @@
+1.Adding Id generator for UserId
+2.Sending Conformation Email to New Users
+3.Setting new Multithreads
+4.generate SHA for passwords and Verfiy

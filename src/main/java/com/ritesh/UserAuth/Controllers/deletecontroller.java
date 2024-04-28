@@ -2,7 +2,7 @@ package com.ritesh.UserAuth.Controllers;
 
 import com.ritesh.UserAuth.DBUtils.Remove_User;
 import com.ritesh.UserAuth.Hashing.GetHash_ID;
-import com.ritesh.UserAuth.Model.User;
+import com.ritesh.UserAuth.Entity.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,8 @@ public class deletecontroller {
     private final GetHash_ID hash;
     @Autowired
     private final User user;
-    @private final Remove_User removeUser;
+    @Autowired
+    private final Remove_User removeUser;
 
     public deletecontroller(GetHash_ID hash, User user, Remove_User removeUser) {
         this.hash = hash;

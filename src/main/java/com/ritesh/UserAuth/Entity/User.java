@@ -1,4 +1,4 @@
-package com.ritesh.UserAuth.Model;
+package com.ritesh.UserAuth.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -40,35 +40,6 @@ public class User {
 
     public void setPassword(String Password) {
       this.Password=Password;
-    }
-
-
-
-    //------------------------------------------getter and setters for the gmail api --------------------------------------
-    private String to;
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    private String subject;
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-    private String text;
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     //--------------------------- to have access to the gmail hash id-------------------------------------------------------

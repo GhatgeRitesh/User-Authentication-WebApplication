@@ -1,6 +1,6 @@
 package com.ritesh.UserAuth.DBUtils;
 
-import com.ritesh.UserAuth.Model.User;
+import com.ritesh.UserAuth.Entity.User;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,11 +32,12 @@ public class Validate_Name {
         }
         try {
             JdbcTemplate temp = new JdbcTemplate(dataSource);
-            String sql = "SELECT EXISTS (SELECT 1 FROM register WHERE name = ?)";
-            return temp.queryForObject(sql, Boolean.class, user.getName());
+            String query = "SELECT COUNT(*) FROM register WHERE Name=? OR Email=?";
+            int count = temp.queryForObject(query, Integer.class, user.getName(), user.getEmail_Id());
+            return count==0;
         }
         catch(Exception e){
-        log.warning("Sql Exceptrion :"+e);
+        log.warning("Sql Exceptrion :"+e.getMessage());
         return false;
     }
     }

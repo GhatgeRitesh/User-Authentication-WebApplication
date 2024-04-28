@@ -1,6 +1,6 @@
 package com.ritesh.UserAuth.DBUtils;
 
-import com.ritesh.UserAuth.Model.User;
+import com.ritesh.UserAuth.Entity.User;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -36,6 +36,23 @@ public class Verify_User {
             return temp.queryForObject(query, Boolean.class, user.getEmail_Id(), user.getPassword());
         }catch(Exception e){
             log.warning("Sql Exceptrion :"+e);
+            return false;
+        }
+    }
+    public Boolean emailValidation(String Email)
+    {
+        if(user==null || dataSource==null)
+        {
+            log.info("User Entity or dataSource is Empty ");
+            return false;
+        }
+        try {
+            JdbcTemplate temp = new JdbcTemplate(dataSource);
+            String query = "SELECT COUNT(*) FROM usercred WHERE   Email=?";
+            int count = temp.queryForObject(query, Integer.class, user.getEmail_Id());
+            return count==0;
+        }catch(Exception e){
+            log.warning("SQL Exception :"+e);
             return false;
         }
     }

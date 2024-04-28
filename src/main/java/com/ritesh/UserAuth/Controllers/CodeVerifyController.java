@@ -1,6 +1,7 @@
 package com.ritesh.UserAuth.Controllers;
 
-import com.ritesh.UserAuth.Model.User;
+import com.ritesh.UserAuth.Entity.User;
+import com.ritesh.UserAuth.GMailControls.GMailEntity;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,23 +17,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CodeVerifyController {
     @Autowired
     private HttpSession session;
+    @Autowired
+    private final User user;
+    @Autowired
+    private final GMailEntity gMailEntity;
+    public CodeVerifyController(User user, GMailEntity gMailEntity) {
+        this.user = user;
+        this.gMailEntity = gMailEntity;
+    }
 
     @GetMapping("/Code VerifyController")
     public String home(){
         session.setAttribute("Email_Id",user.getEmail_Id());
         return "Code VerifyController";
     }
-    @Autowired
-    private final User user;
-
-    public  CodeVerifyController(User user){
-        this.user=user;
-    }
-
     @PostMapping("/verify")
     public String verifyCode(@RequestParam String code){
 
-        if(code.equals(String.valueOf(user.getHashcode()))){
+        if(code.equals(String.valueOf(gMailEntity.getOTP()))){
             log.info("verified Code");
             return "Welcome";
         }
