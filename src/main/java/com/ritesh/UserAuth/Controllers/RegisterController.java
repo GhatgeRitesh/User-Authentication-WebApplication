@@ -7,6 +7,7 @@ import com.ritesh.UserAuth.Entity.User;
 import com.ritesh.UserAuth.Hashing.UserIdGenerator;
 import com.ritesh.UserAuth.Regex_Validation.Gmail_Validation;
 import com.ritesh.UserAuth.Regex_Validation.Password_Validation;
+import com.ritesh.UserAuth.Upload.NewUserFileSystem;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,8 @@ public class RegisterController{
     private final GenerateHashCode hash;
     @Autowired
     private final UserIdGenerator userIdGenerator;
+    @Autowired
+    private NewUserFileSystem newUserFileSystem;
     public RegisterController(AddNewUser addNewUser, Password_Validation regex, Gmail_Validation Gregex, Validate_Name Name, User user, GenerateHashCode hash, UserIdGenerator userIdGenerator) {
         this.addNewUser = addNewUser;
         this.regex = regex;
@@ -97,7 +100,12 @@ public class RegisterController{
            session.setAttribute("ServerError",error4);
           return "redirect:/register";
        }
-
+       try {
+           log.info("creating folder");
+           newUserFileSystem.createFolder();
+       }catch(Exception e){
+           log.info("folder error :"+e);
+       }
 
 //-------------------------------------------------------------------------------------------------------------------
         //if all constrainst satisfied

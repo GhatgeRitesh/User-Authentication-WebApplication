@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Component
 @Scope("prototype")
@@ -54,4 +55,10 @@ public class User {
 
    @Getter @Setter
     private Long Id;
+
+    @Getter @Setter
+    private String FileName;
+
+    @Getter @Setter
+    private MultipartFile File;
 }

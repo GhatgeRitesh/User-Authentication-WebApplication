@@ -41,7 +41,7 @@
                       <img src="images/user_loog.png" alt="ProfileImage" id="profilepic">
                    </div>
                    <div id="ImageUploadForm" display="none">
-                        <form action="Picupload" method="post">
+                        <form action="Picupload" method="post" enctype="multipart/form-data">
                             <input type="file" name="ProfilePic" l class="file-input"  autocomplete="off">
                             <button class="upload-button">Upload Profile</button>
                         </form>
@@ -62,27 +62,27 @@
              <!----------------------------------------end for the pre data fetch ------------------------------------------------  -->
              <!-- --------------------------------------code after Edit Enabled ----------------------------------------------------- -->
             <div class="formtemplate" style="display: none;" id="UpdateForm">
-                <form action="EditInfo" method="post">
+                <form action="EditInfo" method="post" >
                     <div class="Name" id="input">
                         <div class="img" id="img">
 
                         </div>
-                        <label for="Name">Name</label> <br>
+                        <label for="Name">Name</label> <br><br>
                         <input type="text" name="Name" value="${Name}" autocomplete="off" required>
                     </div>
 
                     <div class="Email" id="input">
                         <div class="img" id="img">
                         </div>
-                        <label for="email">Email</label> <br>
-                        <input type="text" name="email" value="${Email}" autocomplete="off" required>
+                        <label for="Email">Email</label> <br><br>
+                        <input type="text" name="Email"  autocomplete="off" required>
                     </div>
                     <div class="UserId" id="input">
                         <div class="img" id="img">
 
                         </div>
-                        <label for="Password">Password</label> <br>
-                        <input type="text" name="Password" value="${null}" autocomplete="off" required>
+                        <label for="Password">Password</label> <br><br>
+                        <input type="text" name="Password" autocomplete="off" required>
                     </div>
 
                     <div class="button" id="button">
