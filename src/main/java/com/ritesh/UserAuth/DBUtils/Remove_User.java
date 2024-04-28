@@ -16,25 +16,36 @@ public class Remove_User {
     private final User user;
     @Autowired
     private final DataSource dataSource;
-    public  Remove_User(User user, DataSource dataSource){
+    @Autowired
+    private final Verify_User verifyUser;
+    public  Remove_User(User user, DataSource dataSource, Verify_User verifyUser){
         this.user=user;
         this.dataSource = dataSource;
+        this.verifyUser = verifyUser;
     }
 
-    public void deleteUser()
+    public Boolean deleteUser()
     {
+        // verify the password
+        if(!verifyUser.verifyUser())
+        {
+            log.info("invalid password ");
+            return false;
+        }
         if(user == null || dataSource == null)
         {
             log.warning("Entity or dataSource is Empty");
-            return;
+            return false;
         }
         try{
             JdbcTemplate temp=new JdbcTemplate(dataSource);
             String query="delete from table where Email=?";
             temp.update(query,user.getEmail_Id());
             log.info("User Deleted Successfully");
+            return true;
         }catch(Exception e){
             log.warning("sql Exception :" +e);
+            return false;
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.ritesh.UserAuth.Configuration;
 
 import com.ritesh.UserAuth.Entity.User;
+import com.ritesh.UserAuth.GMailControls.GMailEntity;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,5 +28,11 @@ public class AppConfig {
                 .password("Rit!@#1115")
                 .build();
         return dataSource;
+    }
+
+    @Bean
+    public GMailEntity gMailEntity()
+    {
+        return new GMailEntity();
     }
 }

@@ -2,8 +2,9 @@ package com.ritesh.UserAuth.Controllers;
 
 import com.ritesh.UserAuth.DBUtils.AddNewUser;
 import com.ritesh.UserAuth.DBUtils.Validate_Name;
-import com.ritesh.UserAuth.Hashing.GetHash_ID;
+import com.ritesh.UserAuth.Hashing.GenerateHashCode;
 import com.ritesh.UserAuth.Entity.User;
+import com.ritesh.UserAuth.Hashing.UserIdGenerator;
 import com.ritesh.UserAuth.Regex_Validation.Gmail_Validation;
 import com.ritesh.UserAuth.Regex_Validation.Password_Validation;
 import jakarta.servlet.http.HttpSession;
@@ -31,14 +32,17 @@ public class RegisterController{
     @Autowired
     private final User user;
     @Autowired
-    private final GetHash_ID hash;
-    public RegisterController(AddNewUser addNewUser, Password_Validation regex, Gmail_Validation Gregex, Validate_Name Name, User user, GetHash_ID hash) {
+    private final GenerateHashCode hash;
+    @Autowired
+    private final UserIdGenerator userIdGenerator;
+    public RegisterController(AddNewUser addNewUser, Password_Validation regex, Gmail_Validation Gregex, Validate_Name Name, User user, GenerateHashCode hash, UserIdGenerator userIdGenerator) {
         this.addNewUser = addNewUser;
         this.regex = regex;
         this.Gregex = Gregex;
         this.Name = Name;
         this.user = user;
         this.hash = hash;
+        this.userIdGenerator = userIdGenerator;
     }
 
     @GetMapping("/register")
@@ -64,7 +68,7 @@ public class RegisterController{
             return "redirect:/register";
         }
 
-        //---------- ----------------------------for Email Validation ------------------------------------------------
+        //---------------------------------------for Email Validation ------------------------------------------------
 
         if(!Gregex.validate_gmail(email_ID))
         {
@@ -82,10 +86,10 @@ public class RegisterController{
             session.setAttribute("PassError",error1);
             return "redirect:/register";
         }
-        //------------------------------------For the Hash Id ------------------------------------------------------------------
-        Password= hash.Hash_Id(Password);
-        user.setPassword(Password);
 
+        //create userid
+        userIdGenerator.generateUserId();
+        hash.Hash_Id(Password);
 
        if(!addNewUser.save()){
            log.warning("error in server while utilizing jdbctemplate");
@@ -93,6 +97,7 @@ public class RegisterController{
            session.setAttribute("ServerError",error4);
           return "redirect:/register";
        }
+
 
 //-------------------------------------------------------------------------------------------------------------------
         //if all constrainst satisfied

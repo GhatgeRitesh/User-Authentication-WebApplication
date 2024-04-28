@@ -1,13 +1,23 @@
 package com.ritesh.UserAuth.Hashing;
 
+import com.ritesh.UserAuth.Entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @Component
-public class GetHash_ID {
-    public String Hash_Id(String password){
+public class GenerateHashCode {
+    // code to create a hashcode for password encryption
+    @Autowired
+    private final User user;
+
+    public GenerateHashCode(User user) {
+        this.user = user;
+    }
+
+    public void Hash_Id(String password){
         String inputString = "Hello, world!";
         StringBuilder hexString = new StringBuilder();
         try {
@@ -30,7 +40,8 @@ public class GetHash_ID {
         } catch (NoSuchAlgorithmException e) {
             System.out.println(e);
         }
-        return hexString.toString();
+
+        user.setPassword(hexString.toString());
     }
 }
 

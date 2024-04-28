@@ -1,10 +1,9 @@
 package com.ritesh.UserAuth.Controllers;
 
-
 import com.ritesh.UserAuth.DBUtils.RetriveUserData;
 import com.ritesh.UserAuth.DBUtils.Verify_User;
 import com.ritesh.UserAuth.GMailControls.GMailSender;
-import com.ritesh.UserAuth.Hashing.GetHash_ID;
+import com.ritesh.UserAuth.Hashing.GenerateHashCode;
 import com.ritesh.UserAuth.Regex_Validation.Password_Validation;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
@@ -27,14 +26,14 @@ public class LoginController {
     @Autowired
     private final User user;
     @Autowired
-    private final GetHash_ID hash;
+    private final GenerateHashCode hash;
 
     @Autowired
     private final GMailSender sender;
     @Autowired
     private final RetriveUserData retriveUserData;
 
-    public LoginController(Password_Validation regex, Verify_User verifyUser, User user, GetHash_ID hash, GMailSender sender, RetriveUserData retriveUserData) {
+    public LoginController(Password_Validation regex, Verify_User verifyUser, User user, GenerateHashCode hash, GMailSender sender, RetriveUserData retriveUserData) {
         this.regex = regex;
         this.verifyUser = verifyUser;
         this.user = user;
@@ -62,9 +61,8 @@ public class LoginController {
        return "redirect:/Login";
    }
 // ------------------------------function for the password check ----------------------------------------------------
-        Password=hash.Hash_Id(Password);
+        hash.Hash_Id(Password);
         user.setEmail_Id(email_ID);
-        user.setPassword(Password);
 
         if(!verifyUser.verifyUser()){
             log.info("User Not Found");

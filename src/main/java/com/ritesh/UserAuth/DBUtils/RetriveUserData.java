@@ -22,7 +22,7 @@ public class RetriveUserData {
         this.dataSource = dataSource;
     }
 
-    public void getData()
+    public Boolean getData()
     {
       if(user == null || dataSource == null)
       {
@@ -36,9 +36,10 @@ public class RetriveUserData {
               user.setName(resultSet.getString("Name"));
               return null;
           });
+          return true;
       }catch(Exception e){
           log.warning("Sql Exception:"+e);
-          return;
+          return false;
       }
     }
 
