@@ -8,14 +8,18 @@ import com.ritesh.UserAuth.Hashing.UserIdGenerator;
 import com.ritesh.UserAuth.Regex_Validation.Gmail_Validation;
 import com.ritesh.UserAuth.Regex_Validation.Password_Validation;
 import com.ritesh.UserAuth.Upload.NewUserFileSystem;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.UUID;
 
 
 @Controller
@@ -56,8 +60,8 @@ public class RegisterController{
     public String register(@RequestParam("Name") String name,
                            @RequestParam("EmailId")String email_ID,
                            @RequestParam("password") String Password,
-                           HttpSession session
-    ){
+                           Model session,HttpSession session1, HttpServletRequest request
+                           ){
         //testing the parameters are updated or not
          user.setEmail_Id(email_ID);
          user.setName(name);
@@ -66,9 +70,8 @@ public class RegisterController{
         if(!Name.isNameAvailable())
         {
             log.info(" Name is not available");
-            String error3="3";
-            session.setAttribute("NameError",error3);
-            return "redirect:/register";
+            session.addAttribute("Error","1");
+            return "register";
         }
 
         //---------------------------------------for Email Validation ------------------------------------------------
@@ -76,18 +79,16 @@ public class RegisterController{
         if(!Gregex.validate_gmail(email_ID))
         {
             log.warning("Error in Gmail");
-            String error2="2";
-            session.setAttribute("GmailError",error2);
-            return "redirect:/register";
+            session.addAttribute("Error","2");
+            return "register";
         }
 
         //----------------------------------------for password verification -------------------------------------------
         if(!regex.validate(Password))
         {
             log.warning("Error in password");
-            String error1="1";
-            session.setAttribute("PassError",error1);
-            return "redirect:/register";
+            session.addAttribute("Error","3");
+            return "register";
         }
 
         //create userid
@@ -96,9 +97,8 @@ public class RegisterController{
 
        if(!addNewUser.save()){
            log.warning("error in server while utilizing jdbctemplate");
-           String error4="4";
-           session.setAttribute("ServerError",error4);
-          return "redirect:/register";
+           session.addAttribute("Error","4");
+          return "register";
        }
        try {
            log.info("creating folder");
@@ -107,9 +107,20 @@ public class RegisterController{
            log.info("folder error :"+e);
        }
 
+       //Retrieve HttpSession or create a new one if not exists
+             session1 = request.getSession();
+
+            // Get or generate session ID
+            String sessionId = (String) session1.getAttribute("sessionId");
+            if (sessionId == null) {
+                sessionId = UUID.randomUUID().toString();
+                session1.setAttribute("sessionId", sessionId);
+            }
+            System.out.println(sessionId);
+            log.info("Session id" + sessionId);
 //-------------------------------------------------------------------------------------------------------------------
         //if all constrainst satisfied
-        return "redirect:/Login";
+        return "Welcome";
     }
 
 }

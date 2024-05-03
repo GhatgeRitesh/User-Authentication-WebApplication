@@ -34,7 +34,7 @@
 
         <div class="template1">
             <div class="template2">
-                <p id="Name">VaultDrive</p>
+                <p id="Name">UserAuth::VaultDrive</p>
               <div class="text">
                 <p id="top">Nice to see you again !</p><br>
                WELCOME BACK <br>
@@ -47,6 +47,29 @@
                 <div class="context">
                     Login Account
                 </div>
+                <div class="Error">
+         <%
+                              String error = (String) request.getAttribute("Error");
+                              if (error != null) {
+                                  switch (error) {
+                                      case "0": { %>
+                                          <p id="EP">*Invalid Email, please use only Gmail</p>
+                                      <% break; }
+                                      case "1": { %>
+                                          <p id="EP">*Invalid Password, use 8 characters including A-Z, a-z, 0-9, symbols</p>
+                                      <% break; }
+                                      case "2": { %>
+                                          <p id="EP">*User Not Found</p>
+                                      <% break; }
+                                      default: { %>
+                                          <p id="EP">*Server Side Error</p>
+                                      <% break; }
+                                  }
+                              }
+                          %>
+                  </div>
+
+                  <!----------------------script to hide error block -----------------------------------  -->
                 <form action="/submit" method="post">
                     <div class="input">
                         <img src="/images/mail (2).png" alt="i" id="icon">
@@ -61,6 +84,9 @@
                         <button>Login</button>
                     </div>
                 </form>
+                <div class="link">
+                <a href="forgotpassword" style="color:blue; text-decoration:none;">Forgot password ?</a>
+                </div>
             </div>
         </div>
     </body>

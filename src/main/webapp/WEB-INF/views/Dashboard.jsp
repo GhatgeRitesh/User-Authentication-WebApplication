@@ -55,7 +55,7 @@
                 <p id="UserCredId">Email Address : <br> ${Email}</p> <br>
                 <p id="UserCredId">User ID : <br> ${UserId}</p> <br>
                 <p id="UserCredId">Password : <br> ${Password}</p> <br>
-                <button id="EditButton"> Edit ✒️</button></a>
+               <button id="EditButton"> Edit ✒️</button>
             </div>
              <!-- ------------------------------------------------------------------------------------------------------------------  -->
 

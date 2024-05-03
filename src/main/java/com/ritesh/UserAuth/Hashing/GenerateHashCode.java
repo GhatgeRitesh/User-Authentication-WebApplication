@@ -18,14 +18,13 @@ public class GenerateHashCode {
     }
 
     public void Hash_Id(String password){
-        String inputString = "Hello, world!";
         StringBuilder hexString = new StringBuilder();
         try {
             // Create MessageDigest instance for SHA-256
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
             // Apply the hash function to the input string
-            byte[] hashBytes = digest.digest(inputString.getBytes());
+            byte[] hashBytes = digest.digest(password.getBytes());
 
             // Convert byte array to hexadecimal format
 

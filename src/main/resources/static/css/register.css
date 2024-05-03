@@ -207,6 +207,10 @@ body
 .Errors{
   position:relative;
   top:2vh;
+  margin:auto;
   font-size:1rem;
   color:red;
+  height:5vh;
+  width:90%;
+  text-align:center;
 }

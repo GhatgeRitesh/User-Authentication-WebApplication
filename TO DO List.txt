@@ -1,9 +1,8 @@
-1.Adding Id generator for UserId -- done
-2.Sending Conformation Email to New Users
-3.Setting new Multithreads
-4.generate SHA for passwords and Verfiy -- done
-5.while making an operations make sure password is verified for the transactions -- done
-6.add user id into dashboard
-7.develop complete dashboard controller
-8.user delete method not working
-9.
+1. dashboard
+2. jdbc
+3. email improve quality
+4. error handelling
+5. project titles
+6. logout mapping release all user cred form entity
+7. add logs
+set logs in server

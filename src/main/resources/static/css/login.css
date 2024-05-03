@@ -170,3 +170,21 @@ body{
      padding: 1%;
      color: white;
 }
+.Error{
+ position:relative;
+ top:-3vh;
+ margin:auto;
+ width:90%;
+ height:5vh;
+ font-size:1rem;
+ text-align:center;
+}
+#EP{
+color:red;
+}
+.link{
+  position:relative;
+  top:5vh;
+  margin:auto;
+  width:20%;
+}

@@ -19,7 +19,7 @@
                     <div class="innertemp">
                         <div class="blur-overlay"></div>
                         <div class="headtxt">
-                          Welcome To Vault
+                          Welcome To UserAuth
                         </div>
                         <div class="context">
                           Your safe haven for personal data storage. We keep your information secure on our servers,
@@ -31,28 +31,25 @@
                  <div class="regtxt">
                     User Registration
                     <div class="Errors">
-                                   <%
-                                    String pass=(String)request.getAttribute("PassError");
-                                    if(pass!=null && pass.equals("1"))
-                                    {
-                                    %>
-                                    <p>*please enter strong password</p>
-                                 <% } %>
-                                             <%
-                                                 String mail=(String)request.getAttribute("MailError");
-                                                 if(mail!=null && mail.equals("2"))
-                                                 {
-                                                  System.out.println("error grabbed by view");
-                                                 %>
-                                                 <p>*please enter valid G-Mail id</p>
-                                              <% } %>
-                                               <%
-                                                 String server=(String)request.getAttribute("MailProcessingError");
-                                                 if(server!=null && server.equals("3"))
-                                                 {
-                                                 %>
-                                                 <p>*please try later Server Error</p>
-                                              <% } %>
+                  <%
+                                       String error = (String)request.getAttribute("Error");
+                                       if (error != null) {
+                                           switch (error) {
+                                               case "1": { %>
+                                                   <p id="EP">*Name already in use please enter new name</p>
+                                               <% break; }
+                                               case "2": { %>
+                                                   <p id="EP">Invalid Email Please Enter only GMAIL Id</p>
+                                               <% break; }
+                                               case "3": { %>
+                                                   <p id="EP">*Invalid Password, use 8 characters including A-Z, a-z, 0-9, symbols</p>
+                                               <% break; }
+                                               default: { %>
+                                                   <p id="EP">*Server Side Error</p>
+                                               <% break; }
+                                           }
+                                       }
+                                   %>
                     </div>
                  </div>
                <form action="submit_register" method="post">

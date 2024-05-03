@@ -18,7 +18,7 @@ body{
   align-items: center;
   border-radius: 0.9vh;
   overflow: hidden;
-  background-color:grey;
+  background-color:white;
 }
 .head{
     position: relative;
@@ -28,7 +28,7 @@ body{
     margin-bottom:2vh;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 4rem;
-    color: rgb(251, 255, 3);
+    color: grey;
     /* animation: head_load 1s ease-in-out none infinite; */
     /* text-shadow:5px 3px 3px 3px rgba(96, 48, 42, 0.49) ; */
 }
