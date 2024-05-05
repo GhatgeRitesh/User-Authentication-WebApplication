@@ -41,16 +41,17 @@ public class Verify_User {
     }
     public Boolean emailValidation(String Email)
     {
-        if(user==null || dataSource==null)
+        log.info("Validating EMail ");
+        if(dataSource==null)
         {
-            log.info("User Entity or dataSource is Empty ");
+            log.info(" dataSource is Empty ");
             return false;
         }
         try {
             JdbcTemplate temp = new JdbcTemplate(dataSource);
-            String query = "SELECT COUNT(*) FROM register WHERE   Email = ?";
-            int count = temp.queryForObject(query, Integer.class, user.getEmail_Id());
-            return count==0;
+            String query = "select count(*) from register where Email = ? ";
+            int count = temp.queryForObject(query, Integer.class, Email);
+            return count==1;
         }catch(Exception e){
             log.warning("SQL Exception :"+e);
             return false;

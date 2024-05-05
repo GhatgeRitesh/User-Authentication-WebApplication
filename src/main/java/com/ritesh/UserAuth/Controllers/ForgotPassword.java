@@ -49,7 +49,7 @@ public class ForgotPassword {
     @PostMapping("/Passreset")
     public String Reset(@RequestParam String Email_Id, HttpSession session){
 
-         log.info("working on email verification and entered into the passreset");
+         log.info("Account Recovery Started");
         //validating the user exists or not
         boolean flag= verifyUser.emailValidation(Email_Id);
         if(flag){

@@ -1,5 +1,6 @@
 package com.ritesh.UserAuth.Controllers;
 
+import com.ritesh.UserAuth.DBUtils.RetriveUserData;
 import com.ritesh.UserAuth.Entity.User;
 import com.ritesh.UserAuth.GMailControls.GMailEntity;
 import jakarta.servlet.http.HttpSession;
@@ -21,22 +22,27 @@ public class CodeVerifyController {
     private final User user;
     @Autowired
     private final GMailEntity gMailEntity;
-    public CodeVerifyController(User user, GMailEntity gMailEntity) {
+    @Autowired
+    private final RetriveUserData retriveUserData;
+
+    public CodeVerifyController(User user, GMailEntity gMailEntity, RetriveUserData retriveUserData) {
         this.user = user;
         this.gMailEntity = gMailEntity;
+        this.retriveUserData = retriveUserData;
     }
 
-    @GetMapping("/Code VerifyController")
+    @GetMapping("/CodeVerification")
     public String home(){
         session.setAttribute("Email_Id",user.getEmail_Id());
-        return "Code VerifyController";
+        return "CodeVerification";
     }
     @PostMapping("/verify")
     public String verifyCode(@RequestParam String code){
 
         if(code.equals(String.valueOf(gMailEntity.getOTP()))){
             log.info("verified Code");
-            return "Welcome";
+            retriveUserData.getData();
+            return "ResetPassword";
         }
         log.warning("Incorrect Code!");
         return "redirect:/forgotpassword";
