@@ -1,0 +1,60 @@
+body{
+    display: flex;
+    flex-direction: column;
+}
+.template{
+    position: relative;
+    top: 10vh;
+    width: 40%;
+    height:60vh;
+    margin: auto;
+    border: 2px inset red;
+   display: flex;
+   flex-direction: column;
+   padding: 5%;
+}
+.context{
+    position: relative;
+    top: -5%;
+    text-align: left;
+    color:rgb(1, 97, 93);
+    font-size: 2rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.usercred{
+    position: relative;
+    top:2vh;
+    margin-left: 16vw;
+    text-align: left;
+    color: orange;
+    font-size: 1.2rem;
+}
+.form{
+    position: relative;
+    top: 0vh;
+
+    margin: auto;
+    text-align: left;
+    border: 1px solid yellow;
+    padding: 5%;
+
+}
+input{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    outline:none;
+    border: none;
+    background-color: antiquewhite;
+    padding: 2%;
+    font-size: 1rem;
+}
+button{
+    position: relative;
+    margin-top:2vh ;
+    border: none;
+    background-color: greenyellow;
+    border-radius: 0.1rem;
+    width: 10vw;
+    font-size: 1rem;
+    height: 3vh;
+}
