@@ -2,6 +2,7 @@ package com.ritesh.UserAuth.Controllers;
 
 import com.ritesh.UserAuth.DBUtils.Verify_User;
 import com.ritesh.UserAuth.GMailControls.EmailOTPGenerator;
+import com.ritesh.UserAuth.GMailControls.ForgotPassword_EMail;
 import com.ritesh.UserAuth.GMailControls.GMailEntity;
 import com.ritesh.UserAuth.GMailControls.GMailSender;
 import com.ritesh.UserAuth.Entity.User;
@@ -29,6 +30,9 @@ public class ForgotPassword {
     @Autowired
     private final EmailOTPGenerator emailOTPGenerator;
 
+    @Autowired
+    private ForgotPassword_EMail forgotPasswordEmail;
+
     public ForgotPassword(GMailSender sender, User user, Verify_User verifyUser, GMailEntity gMailEntity, EmailOTPGenerator emailOTPGenerator) {
         this.sender = sender;
         this.user = user;
@@ -49,6 +53,7 @@ public class ForgotPassword {
         //validating the user exists or not
         boolean flag= verifyUser.emailValidation(Email_Id);
         if(flag){
+            log.info("email verified");
             user.setEmail_Id(Email_Id);
         }
         else{
@@ -62,10 +67,11 @@ public class ForgotPassword {
 
         emailOTPGenerator.getOTP();
         gMailEntity.setTo(Email_Id);
+        forgotPasswordEmail.setPasswordRecoveryMail();
         if(!sender.SendEmail()){
            log.warning("Email Not Sent ");
            return "redirect:/forgotpassword";
         }
-        return "/Code Verification";
+        return "/CodeVerification";
     }
 }

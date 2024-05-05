@@ -12,7 +12,7 @@ public class ForgotPassword_EMail {
     public ForgotPassword_EMail(GMailEntity gMailEntity) {
         this.gMailEntity = gMailEntity;
     }
-    public Boolean sendPasswordRecoveryMail()
+    public Boolean setPasswordRecoveryMail()
     {
         String subject="Your One-Time Password (OTP) for Verification";
         String text="<html><body style=\"font-size:16px;color:black;\">Dear user,<br>\n" +

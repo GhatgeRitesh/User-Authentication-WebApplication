@@ -88,22 +88,3 @@ public class LoginController {
         return "Welcome";
     }
 }
-/*  <!--  <%
-                      String error = (String) Error;
-                      if (error != null) {
-                          switch (error) {
-                              case "0": { %>
-                                  <p id="EP">*Invalid Email, please use only Gmail</p>
-                              <% break; }
-                              case "1": { %>
-                                  <p id="EP">*Invalid Password, use 8 characters including A-Z, a-z, 0-9, symbols</p>
-                              <% break; }
-                              case "2": { %>
-                                  <p id="EP">*User Not Found</p>
-                              <% break; }
-                              default: { %>
-                                  <p id="EP">*Server Side Error</p>
-                              <% break; }
-                          }
-                      }
-                  %> --> */

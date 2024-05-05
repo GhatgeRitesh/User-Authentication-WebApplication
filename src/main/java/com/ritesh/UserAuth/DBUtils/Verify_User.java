@@ -48,7 +48,7 @@ public class Verify_User {
         }
         try {
             JdbcTemplate temp = new JdbcTemplate(dataSource);
-            String query = "SELECT COUNT(*) FROM usercred WHERE   Email=?";
+            String query = "SELECT COUNT(*) FROM register WHERE   Email = ?";
             int count = temp.queryForObject(query, Integer.class, user.getEmail_Id());
             return count==0;
         }catch(Exception e){

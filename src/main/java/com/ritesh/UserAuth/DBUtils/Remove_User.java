@@ -39,7 +39,7 @@ public class Remove_User {
         }
         try{
             JdbcTemplate temp=new JdbcTemplate(dataSource);
-            String query="delete from table where Email=?";
+            String query="delete from  register where Email=?";
             temp.update(query,user.getEmail_Id());
             log.info("User Deleted Successfully");
             return true;

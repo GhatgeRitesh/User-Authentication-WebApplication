@@ -4,11 +4,13 @@ import com.ritesh.UserAuth.Entity.User;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 @Component
+@Log
 public class GMailSender {
 
     @Autowired
@@ -19,9 +21,12 @@ public class GMailSender {
     }
 
     public Boolean SendEmail(){
-
         //logic
-
+        if(gMailEntity==null)
+        {
+            log.info("Gmail Entity Null");
+            return false;
+        }
         //SMTP Server details
         Properties prop=new Properties();
         prop.put("mail.smtp.auth",true);
@@ -50,11 +55,11 @@ public class GMailSender {
             msg.setSubject(gMailEntity.getSubject());
             msg.setContent(gMailEntity.getText(),"text/html");
             Transport.send(msg);
-            System.out.println("Gmail Sent Successfully");
+            log.info("Gmail OTP Sent Successfully");
             return true;
         }
         catch(Exception e){
-            System.out.println(e);
+            log.info(" "+e);
         }
         return false;
     }

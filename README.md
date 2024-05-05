@@ -83,8 +83,11 @@ Data integrity should be maintained even during server failures or system crashe
 
 <h3>Data Flow Diagram</h3> <br>
 
-<img style="width:50%; height:500px; margin-left:25%;" src="./src/main/resources/static/images/index.png">
-
 <br><br>
+![img.png](img.png)
+
+<br> Project Structure <br>
+
+![img_5.png](img_5.png)
 
 
