@@ -27,7 +27,7 @@ public class LoginController {
     @Autowired
     private final Password_Validation regex;
     @Autowired
-    private Gmail_Validation gmailValidation;
+    private final Gmail_Validation gmailValidation;
     @Autowired
     private final Verify_User verifyUser;
     @Autowired
@@ -36,16 +36,14 @@ public class LoginController {
     private final GenerateHashCode hash;
 
     @Autowired
-    private final GMailSender sender;
-    @Autowired
     private final RetriveUserData retriveUserData;
 
-    public LoginController(Password_Validation regex, Verify_User verifyUser, User user, GenerateHashCode hash, GMailSender sender, RetriveUserData retriveUserData) {
+    public LoginController(Password_Validation regex, Gmail_Validation gmailValidation, Verify_User verifyUser, User user, GenerateHashCode hash, RetriveUserData retriveUserData) {
         this.regex = regex;
+        this.gmailValidation = gmailValidation;
         this.verifyUser = verifyUser;
         this.user = user;
         this.hash = hash;
-        this.sender = sender;
         this.retriveUserData = retriveUserData;
     }
 
@@ -82,8 +80,6 @@ public class LoginController {
             return "Login";
         }
         retriveUserData.getData();
-
-
 //----------------------------------------------------------------------------------------------------------------------
         return "Welcome";
     }

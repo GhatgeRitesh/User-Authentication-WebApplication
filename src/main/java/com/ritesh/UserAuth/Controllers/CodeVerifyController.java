@@ -42,9 +42,9 @@ public class CodeVerifyController {
         if(code.equals(String.valueOf(gMailEntity.getOTP()))){
             log.info("verified Code");
             retriveUserData.getData();
-            return "ResetPassword";
+            return "/ResetPassword";
         }
         log.warning("Incorrect Code!");
-        return "redirect:/forgotpassword";
+        return "/forgotpassword";
     }
 }

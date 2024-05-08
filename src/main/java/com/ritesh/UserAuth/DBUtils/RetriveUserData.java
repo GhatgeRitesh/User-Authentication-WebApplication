@@ -28,6 +28,7 @@ public class RetriveUserData {
       {
           log.warning("User Entity or dataSource Empty ");
       }
+      log.info("Retriving User Data");
       try{
           JdbcTemplate temp=new JdbcTemplate(dataSource);
           String query="Select Id , Name from register where Email=?";
@@ -36,6 +37,8 @@ public class RetriveUserData {
               user.setName(resultSet.getString("Name"));
               return null;
           });
+          System.out.println(user.getId() + "  " + user.getName());
+          log.info("retrieval process Finished");
           return true;
       }catch(Exception e){
           log.warning("Sql Exception:"+e);

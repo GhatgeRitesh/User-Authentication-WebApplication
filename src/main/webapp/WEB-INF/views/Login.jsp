@@ -73,11 +73,11 @@
                 <form action="/submit" method="post">
                     <div class="input">
                         <img src="/images/mail (2).png" alt="i" id="icon">
-                        <input type="text" name="Email_id" autocomplete="off" value="Email Id" required>
+                        <input type="text" name="Email_id"  id="mail" autocomplete="off" value="Email Id" required>
                     </div>
                     <div class="input">
                         <img src="/images/password (1).png" alt="i" id="icon">
-                        <input type="text" name="password" autocomplete="off" value="Password" required>
+                        <input type="password" name="password" id="password" autocomplete="off" value="Password" required>
                     </div>
 
                     <div class="butt">
@@ -89,5 +89,23 @@
                 </div>
             </div>
         </div>
+        <script>
+        // Function to handle input click
+        function handleInputClick(event) {
+          // Clear the input value
+          event.target.value = '';
+
+          // Remove the event listener after its triggered for the first time
+          event.target.removeEventListener('click', handleInputClick);
+        }
+
+        // Find the input element by its ID
+        var inputElement = document.getElementById('mail');
+        var inputElement1= document.getElementById('password');
+
+        // Attach an event listener to the input field
+        inputElement.addEventListener('click', handleInputClick);
+        inputElement1.addEventListener('click', handleInputClick);
+        </script>
     </body>
     </html>
