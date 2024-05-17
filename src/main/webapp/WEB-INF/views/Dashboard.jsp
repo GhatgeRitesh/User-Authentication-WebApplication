@@ -15,7 +15,7 @@
 
         <div class="back1">
             <div class="links" >
-                <a href="/Welcome"><button>⬅️ Back<button></a>
+                <a href="/UserAuth/Welcome"><button>⬅️Back</button></a>
             </div>
         </div>
         <div class="head">

@@ -76,8 +76,6 @@ public class DashBoard {
 
         // validate email if email is changed
 
-
-
         // saving cred into db
 
         return "Dashboard";

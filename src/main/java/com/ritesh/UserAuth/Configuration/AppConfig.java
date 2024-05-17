@@ -5,6 +5,7 @@ import com.ritesh.UserAuth.GMailControls.GMailEntity;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -34,5 +35,10 @@ public class AppConfig {
     public GMailEntity gMailEntity()
     {
         return new GMailEntity();
+    }
+
+    @Bean
+    public RestTemplate restTemplate(){
+        return new  RestTemplate();
     }
 }

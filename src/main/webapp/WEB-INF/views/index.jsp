@@ -24,7 +24,7 @@
                    This project lays the groundwork for future microservice integration, making it a valuable addition to any software ecosystem. <br>
                </div>
                <div class="links">
-                   <a href="Login">Login</a> <a href="register">Register</a>
+                   <a href="/UserAuth/Login">Login</a> <a href="/UserAuth/register">Register</a>
                  </div>
                <div class="author">
                    Developed By <br>

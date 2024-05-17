@@ -70,7 +70,7 @@
                   </div>
 
                   <!----------------------script to hide error block -----------------------------------  -->
-                <form action="/submit" method="post">
+                <form action="/UserAuth/u/Login/submit" method="post">
                     <div class="input">
                         <img src="/images/mail (2).png" alt="i" id="icon">
                         <input type="text" name="Email_id"  id="mail" autocomplete="off" value="Email Id" required>

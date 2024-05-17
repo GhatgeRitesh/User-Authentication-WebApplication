@@ -9,7 +9,7 @@
         <meta http-equiv="Pragma" content="no-cache">   
         <meta http-equiv="Expires" content="0">
         <link rel="stylesheet" href="/css/register.css">
-        <title>Vault Register</title>
+        <title>New User Registration</title>
     </head>
     <body>
         <div class="temp">
@@ -52,7 +52,7 @@
                                    %>
                     </div>
                  </div>
-               <form action="submit_register" method="post">
+               <form action="/UserAuth/Register/NewUser" method="post">
 
                 <div class="name">
                     <img src="/images/user (1).png" alt="asdas" id="imglogo">

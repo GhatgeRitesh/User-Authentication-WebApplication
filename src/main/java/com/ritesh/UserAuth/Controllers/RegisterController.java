@@ -12,18 +12,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
 
 
-@Controller
-@Component
+@RestController
+@RequestMapping("UserAuth")
 @Log
 public class RegisterController{
     @Autowired
@@ -42,7 +44,10 @@ public class RegisterController{
     private final UserIdGenerator userIdGenerator;
     @Autowired
     private NewUserFileSystem newUserFileSystem;
-    public RegisterController(AddNewUser addNewUser, Password_Validation regex, Gmail_Validation Gregex, Validate_Name Name, User user, GenerateHashCode hash, UserIdGenerator userIdGenerator) {
+    @Autowired
+    private final RestTemplate restTemplate;
+
+    public RegisterController(AddNewUser addNewUser, Password_Validation regex, Gmail_Validation Gregex, Validate_Name Name, User user, GenerateHashCode hash, UserIdGenerator userIdGenerator, RestTemplate restTemplate) {
         this.addNewUser = addNewUser;
         this.regex = regex;
         this.Gregex = Gregex;
@@ -50,13 +55,15 @@ public class RegisterController{
         this.user = user;
         this.hash = hash;
         this.userIdGenerator = userIdGenerator;
+        this.restTemplate = restTemplate;
     }
 
     @GetMapping("/register")
-    public String register(){
-        return "register";
+    public ModelAndView register(ModelAndView mv){
+        mv.setViewName("register");
+        return mv;
     }
-    @PostMapping("/submit_register")
+    @PostMapping("/Register/NewUser")
     public String register(@RequestParam("Name") String name,
                            @RequestParam("EmailId")String email_ID,
                            @RequestParam("password") String Password,
@@ -71,7 +78,10 @@ public class RegisterController{
         {
             log.info(" Name is not available");
             session.addAttribute("Error","1");
-            return "register";
+            String BaseUrl="http://localhost:8081";
+            String UserUrl="/UserAuth/"+"register";
+            ResponseEntity<String> response=restTemplate.getForEntity(BaseUrl+UserUrl,String.class, HttpStatus.OK);
+            return response.getBody();
         }
 
         //---------------------------------------for Email Validation ------------------------------------------------
@@ -80,7 +90,10 @@ public class RegisterController{
         {
             log.warning("Error in Gmail");
             session.addAttribute("Error","2");
-            return "register";
+            String BaseUrl="http://localhost:8081";
+            String UserUrl="/UserAuth/"+"register";
+            ResponseEntity<String> response=restTemplate.getForEntity(BaseUrl+UserUrl,String.class, HttpStatus.OK);
+            return response.getBody();
         }
 
         //----------------------------------------for password verification -------------------------------------------
@@ -88,7 +101,10 @@ public class RegisterController{
         {
             log.warning("Error in password");
             session.addAttribute("Error","3");
-            return "register";
+            String BaseUrl="http://localhost:8081";
+            String UserUrl="/UserAuth/"+"register";
+            ResponseEntity<String> response=restTemplate.getForEntity(BaseUrl+UserUrl,String.class, HttpStatus.OK);
+            return response.getBody();
         }
 
         //create userid
@@ -98,7 +114,10 @@ public class RegisterController{
        if(!addNewUser.save()){
            log.warning("error in server while utilizing jdbctemplate");
            session.addAttribute("Error","4");
-          return "register";
+           String BaseUrl="http://localhost:8081";
+           String UserUrl="/UserAuth/"+"register";
+           ResponseEntity<String> response=restTemplate.getForEntity(BaseUrl+UserUrl,String.class, HttpStatus.OK);
+           return response.getBody();
        }
        try {
            log.info("creating folder");
@@ -120,7 +139,10 @@ public class RegisterController{
             log.info("Session id" + sessionId);
 //-------------------------------------------------------------------------------------------------------------------
         //if all constrainst satisfied
-        return "Welcome";
+        String BaseUrl="http://localhost:8081";
+        String UserUrl="/UserAuth/u/"+user.getId()+"/Welcome";
+        ResponseEntity<String> response=restTemplate.getForEntity(BaseUrl+UserUrl,String.class, HttpStatus.OK);
+        return response.getBody();
     }
 
 }
